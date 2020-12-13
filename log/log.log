@@ -1,0 +1,20 @@
+2020-04-12 16:40:35 - [ DEBUG ]  fdasfdafasda.LoginCase.init(LoginCase.java:25) main fdasfdafasda.LoginCase - 初始化浏览器 ------------ 
+2020-04-12 16:40:41 - [ ERROR ]  fdasfdafasda.LoginCase.login(LoginCase.java:38) main fdasfdafasda.LoginCase - login-------------------> 
+2020-04-12 22:32:04 - [ DEBUG ]  cases.LoginCase.init(LoginCase.java:25) main cases.LoginCase - 初始化浏览器 ------------ 
+2020-04-12 22:32:08 - [ ERROR ]  cases.LoginCase.login(LoginCase.java:38) main cases.LoginCase - login-------------------> 
+2020-04-12 22:34:36 - [ DEBUG ]  cases.LoginCase.init(LoginCase.java:25) main cases.LoginCase - 初始化浏览器 ------------ 
+2020-04-12 22:34:41 - [ ERROR ]  cases.LoginCase.login(LoginCase.java:38) main cases.LoginCase - login-------------------> 
+2020-04-12 22:40:02 - [ DEBUG ]  cases.LoginCase.init(LoginCase.java:25) main cases.LoginCase - 初始化浏览器 ------------ 
+2020-04-12 22:40:07 - [ ERROR ]  cases.LoginCase.login(LoginCase.java:38) main cases.LoginCase - login-------------------> 
+2020-04-12 22:42:26 - [ DEBUG ]  cases.LoginCase.init(LoginCase.java:25) main cases.LoginCase - 初始化浏览器 ------------ 
+2020-04-12 22:42:31 - [ ERROR ]  cases.LoginCase.login(LoginCase.java:38) main cases.LoginCase - login-------------------> 
+2020-04-23 14:20:09 - [ DEBUG ]  ITest.Course.init(Course.java:29) main ITest.LoginTest - 初始化浏览器 
+2020-04-23 14:20:11 - [ DEBUG ]  ITest.Course.init(Course.java:34) main ITest.LoginTest - 输入地址 
+2020-04-23 14:22:46 - [ DEBUG ]  ITest.Course.init(Course.java:29) main ITest.LoginTest - 初始化浏览器 
+2020-04-23 14:22:48 - [ DEBUG ]  ITest.Course.init(Course.java:34) main ITest.LoginTest - 输入地址 
+2020-04-23 14:24:12 - [ DEBUG ]  ITest.Course.init(Course.java:29) main ITest.LoginTest - 初始化浏览器 
+2020-04-23 14:24:14 - [ DEBUG ]  ITest.Course.init(Course.java:34) main ITest.LoginTest - 输入地址 
+2020-04-23 14:24:39 - [ DEBUG ]  ITest.Course.init(Course.java:29) main ITest.LoginTest - 初始化浏览器 
+2020-04-23 14:24:41 - [ DEBUG ]  ITest.Course.init(Course.java:34) main ITest.LoginTest - 输入地址 
+2020-04-23 14:24:58 - [ DEBUG ]  ITest.Course.init(Course.java:29) main ITest.LoginTest - 初始化浏览器 
+2020-04-23 14:25:01 - [ DEBUG ]  ITest.Course.init(Course.java:34) main ITest.LoginTest - 输入地址 

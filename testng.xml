@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"></listener>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"></listener>
+        <listener class-name="Util.TestNGListennerSendEmail"></listener>
+        <listener class-name="Util.TestCaseReport"></listener>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="F:/Final exercise selenium/src/test/java/cases/BuyCourseCase.java">
+
+        <classes>
+            <class name="cases.BuyCourseCase">
+                <methods>
+                    <include name="addShop"/>
+                    <include name="BuyNow"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="F:/Final exercise selenium/src/test/java/cases/SureSubmitCase.java">
+        <classes>
+            <class name="cases.SureSubmitCase">
+                <methods>
+                    <include name="clickSubmit"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="F:/Final exercise selenium/src/test/java/cases/LoginCase.java">
+        <classes>
+            <class name="cases.LoginCase">
+                <methods>
+                    <include name="login"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
