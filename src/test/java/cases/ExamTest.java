@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import handle.ExamHandle;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.BeforeClass;
@@ -15,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ExamTest extends BaseCase {
     public WebDriver driver;
+    ExamHandle examHandle;
 
     @BeforeClass
     public void init() {
@@ -24,6 +26,7 @@ public class ExamTest extends BaseCase {
         driver.manage().window().maximize();
         //隐式等待，等待5s
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        examHandle = new ExamHandle(driver);
     }
 
     @Test
@@ -34,7 +37,8 @@ public class ExamTest extends BaseCase {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        driver.findElement(By.cssSelector("div[class='login_title']+p[class='exam_num']>input")).sendKeys("201205000073");
+        examHandle.UsernameElement();
+//        driver.findElement(By.cssSelector("div[class='login_title']+p[class='exam_num']>input")).sendKeys("201205000073");
         driver.findElement(By.cssSelector("input[type='password']")).sendKeys("585554");
         driver.findElement(By.cssSelector("div[class='login_main']>button")).click();
         //确认&继续
@@ -42,8 +46,6 @@ public class ExamTest extends BaseCase {
         driver.findElement(By.cssSelector("span[class='el-checkbox__inner']")).click();
         //进入到考试页面
         driver.findElement(By.cssSelector("div[class='next next_active']")).click();
-
-
         HashMap<String, List> formNameMap = fetchData();
         trainTicketForm(formNameMap, "trainTicketForm");
         /**

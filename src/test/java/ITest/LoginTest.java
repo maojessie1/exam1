@@ -62,7 +62,7 @@ public class LoginTest {
     }
 
     private By getProElement(String key) {
-        ProUtil p = new ProUtil("F:\\Final exercise selenium\\element.properties");
+        ProUtil p = new ProUtil("E:\\Final exercise selenium1206\\Final exercise selenium\\ddd\\examElement.properties");
         String element = p.getP(key);
         String local = element.split(">")[0];
         String value = element.split(">")[1];
