@@ -37,7 +37,7 @@ public class ExamTest extends BaseCase {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        examHandle.UsernameElement();
+        examHandle.usernameElement();
 //        driver.findElement(By.cssSelector("div[class='login_title']+p[class='exam_num']>input")).sendKeys("201205000073");
         driver.findElement(By.cssSelector("input[type='password']")).sendKeys("585554");
         driver.findElement(By.cssSelector("div[class='login_main']>button")).click();
@@ -79,12 +79,16 @@ public class ExamTest extends BaseCase {
         elements.get(1).click();
 
         //点击开始答题按钮
-//        WebElement element = driver.findElement(By.xpath("//*[@id=\"wrapMain\"]/div[2]/div[1]/div/div[3]/button/span"));
         WebElement element = driver.findElement(By.cssSelector("button[type='button'][class='el-button el-button--primary is-round']"));
         element.click();
 
         WebElement iframeName = driver.findElement(By.name("ifinc"));
         driver.switchTo().frame(iframeName);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         //点击票据采集菜单
         List<WebElement> element3 = driver.findElements(By.cssSelector("li[class='menu-children']"));
         element3.get(1).click();

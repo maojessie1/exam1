@@ -30,7 +30,7 @@ public class LKCtx extends BaseCase {
     @Test
     public void login() {
         System.out.println("1");
-        driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[3]/div/p[1]/input")).sendKeys("201205000073");
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[3]/div/p[1]/input")).sendKeys("201205000077");
         driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[3]/div/p[2]/input")).sendKeys("585554");
         driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[3]/div/button/span")).click();
         driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[3]/div/div[8]")).click();
@@ -76,7 +76,11 @@ public class LKCtx extends BaseCase {
 //        List list = formNameMap.get(taxForm);
         WebElement iframeName = driver.findElement(By.name("ifinc"));
         driver.switchTo().frame(iframeName);
-
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/section/section/aside/div[1]/ul/li[2]/div/span")).click();
         try {
             Thread.sleep(3000);

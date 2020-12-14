@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import page.ExamPage;
 
 public class ExamHandle {
-    WebDriver driver;
+    public WebDriver driver;
     ExamPage examPage;
 
     public ExamHandle(WebDriver driver) {
@@ -12,7 +12,9 @@ public class ExamHandle {
     }
 
 
-    public void UsernameElement(){
+    public void usernameElement(){
+        String text = examPage.getUsernameElement().getText();
+        System.out.println("text = " + text);
         examPage.getUsernameElement().sendKeys("201205000073");
     }
 }
