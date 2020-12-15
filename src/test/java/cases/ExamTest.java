@@ -38,14 +38,13 @@ public class ExamTest extends BaseCase {
             e.printStackTrace();
         }
         examHandle.usernameElement();
-//        driver.findElement(By.cssSelector("div[class='login_title']+p[class='exam_num']>input")).sendKeys("201205000073");
-        driver.findElement(By.cssSelector("input[type='password']")).sendKeys("585554");
-        driver.findElement(By.cssSelector("div[class='login_main']>button")).click();
+        examHandle.passwordElement();
+        examHandle.loginElement();
         //确认&继续
-        driver.findElement(By.cssSelector("div[class='next']")).click();
-        driver.findElement(By.cssSelector("span[class='el-checkbox__inner']")).click();
+        examHandle.continueOneElement();
+        examHandle.continueTwoElement();
         //进入到考试页面
-        driver.findElement(By.cssSelector("div[class='next next_active']")).click();
+        examHandle.entenElement();
         HashMap<String, List> formNameMap = fetchData();
         trainTicketForm(formNameMap, "trainTicketForm");
         /**
@@ -79,9 +78,9 @@ public class ExamTest extends BaseCase {
         elements.get(1).click();
 
         //点击开始答题按钮
-        WebElement element = driver.findElement(By.cssSelector("button[type='button'][class='el-button el-button--primary is-round']"));
-        element.click();
-
+       /* WebElement element = driver.findElement(By.cssSelector("button[type='button'][class='el-button el-button--primary is-round']"));
+        element.click();*/
+        examHandle.startAnsweringButton();
         WebElement iframeName = driver.findElement(By.name("ifinc"));
         driver.switchTo().frame(iframeName);
         try {
@@ -90,8 +89,9 @@ public class ExamTest extends BaseCase {
             e.printStackTrace();
         }
         //点击票据采集菜单
-        List<WebElement> element3 = driver.findElements(By.cssSelector("li[class='menu-children']"));
-        element3.get(1).click();
+        /*List<WebElement> element3 = driver.findElements(By.cssSelector("li[class='menu-children']"));
+        element3.get(1).click();*/
+        examHandle.clickPJCJ();
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {

@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import java.util.List;
+
 public class BasePage {
     WebDriver driver;
 
@@ -45,5 +47,8 @@ public class BasePage {
         actions.moveToElement(getFindElement(moveTo)).perform();
     }
 
+    public List<WebElement> getFindElements(String key) {
+        return driver.findElements(getElement(key));
+    }
 
 }
