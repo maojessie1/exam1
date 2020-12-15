@@ -1,5 +1,6 @@
-package cases;
+package ksCases;
 
+import cases.BaseCase;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -45,13 +46,14 @@ public class ExamTest extends BaseCase {
         examHandle.continueTwoElement();
         //进入到考试页面
         examHandle.entenElement();
-        HashMap<String, List> formNameMap = fetchData();
-        trainTicketForm(formNameMap, "trainTicketForm");
+        //采集
+//        HashMap<String, List> formNameMap = fetchData();
+//        trainTicketForm(formNameMap, "trainTicketForm");
         /**
          * 仿真政务-领购发票
          */
-//        HashMap<String, List> formNameMap = fetchData1();
-//        taxForm(formNameMap, "taxForm");
+        HashMap<String, List> formNameMap = fetchData1();
+        taxForm(formNameMap, "taxForm");
     }
 
     /**
@@ -180,6 +182,7 @@ public class ExamTest extends BaseCase {
         ((JavascriptExecutor) driver).executeScript(js);
 
         List<WebElement> elements1 = driver.findElements(By.cssSelector(".topic_num"));
+
         int size = elements1.size();
         System.out.println(size + "size。。。。。。。。。。");
         elements1.get(0).click();
@@ -228,7 +231,6 @@ public class ExamTest extends BaseCase {
 
     public HashMap<String, List> fetchData1() {
         HashMap<String, List> formNameMap = new HashMap<>();
-
         //获取formName值
         String str2 = "[{\"id\":152,\"eventName\":\"仿真-填写并领购发票\",\"eventType\":0,\"eventUrl\":\"https://zledu-oss-sx.cailian.net/cjdd/course/20200324/71271858-1585039487845.png\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3032\",\"eventTemplateUrl\":\"https://dummyedusx.cailian.net/#/writeInvoice\",\"eventTemplatePic\":\"modelName=purchase_invoice&modelType=formTemplate\",\"eventDesp\":\"\",\"roles\":null,\"modelType\":\"formTemplate\",\"modelName\":\"purchase_invoice\",\"type\":true,\"dynmaicParamReqList\":[{\"param\":\"platform\",\"value\":\"dummy\",\"type\":\"1\"},{\"param\":\"templateCode\",\"value\":\"001\",\"type\":\"1\"},{\"param\":\"roles\",\"value\":\"3032\",\"type\":\"1\"}],\"value\":{\"name\":\"填写并领购发票\",\"form\":{\"configure\":{\"formName\":\"taxForm\",\"tableNum1\":\"1\",\"tableRemarks1\":\"2\",\"tableNum2\":\"3\",\"tableRemarks2\":\"4\",\"taxNumber\":\"5\",\"taxName\":\"6\",\"name\":\"7\",\"mobileNum\":\"8\",\"detailAddress\":\"9\",\"postalCode\":\"10\",\"remarks\":\"11\",\"address\":\"东城区\",\"isYourSelfGet\":\"0\"},\"weightMapper\":{\"taxNumber\":\"8\",\"taxName\":\"8\",\"name\":\"8\",\"mobileNum\":\"8\",\"address\":\"8\",\"detailAddress\":\"8\",\"postalCode\":\"8\",\"isYourSelfGet\":\"8\",\"remarks\":\"8\",\"tableNum1\":\"7\",\"tableNum2\":\"7\",\"tableRemarks1\":\"7\",\"tableRemarks2\":\"7\"}},\"configureWidth\":\"250px\",\"scoreWidth\":\"90px\"},\"eventWeight\":\"100\",\"version\":0,\"versionStatus\":true,\"timestamp\":1607261701754,\"standParseType\":0,\"sort\":0}]";
         JsonParser jp = new JsonParser();

@@ -42,6 +42,34 @@ public class ExamPage extends BasePage {
     public WebElement getclickPJCJ() {
         List<WebElement> clickPJCJ = getFindElements("clickPJCJ");
         WebElement webElement = clickPJCJ.get(1);
-        return  webElement;
+        return webElement;
     }
+
+    //仿真政务--填写并领购发票
+
+    public WebElement getpageOneElement() {
+        return getFindElement("pageOne");
+    }
+
+
+    public WebElement getpageTwoElement() {
+        return getFindElement("pageTwo");
+    }
+
+    public WebElement getpageThreeElement() {
+        return getFindElement("pageThree");
+    }
+
+    public WebElement getpageFourElement() {
+        return getFindElement("pageFour");
+    }
+
+    public WebElement getpageFiveElement() {
+        return getFindElement("pageFive");
+    }
+
+    public WebElement getpageSixElement() {
+        return getFindElement("pageSix");
+    }
+
 }

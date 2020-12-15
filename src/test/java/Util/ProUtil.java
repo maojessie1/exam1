@@ -41,8 +41,9 @@ public class ProUtil {
     public static void main(String[] args) {
 //        ProUtil proUtil = new ProUtil("F:\\Final exercise selenium\\element.properties");
 //        ProUtil proUtil = new ProUtil("E:\\Final exercise selenium1206\\Final exercise selenium\\ddd\\examElement.properties");
-        ProUtil proUtil = new ProUtil("examElement.properties");
-        String username = proUtil.getP("usernameElement");
+//        ProUtil proUtil = new ProUtil("examElement.properties");
+        ProUtil proUtil = new ProUtil("cardNum.properties");
+        String username = proUtil.getP("user0");
         System.out.println(username);
     }
 }

@@ -1,5 +1,6 @@
-package cases;
+package ITest;
 
+import cases.BaseCase;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

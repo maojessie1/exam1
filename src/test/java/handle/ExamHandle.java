@@ -1,5 +1,6 @@
 package handle;
 
+import Util.ProUtil;
 import org.openqa.selenium.WebDriver;
 import page.ExamPage;
 
@@ -7,17 +8,22 @@ public class ExamHandle {
     public WebDriver driver;
     ExamPage examPage;
 
+    ProUtil proUtil = new ProUtil("cardNum.properties");
+    String elementKey = proUtil.getP("user1");
+    String local = elementKey.split(">")[0];
+    String value = elementKey.split(">")[1];
+
     public ExamHandle(WebDriver driver) {
         examPage = new ExamPage(driver);
     }
 
 
     public void usernameElement() {
-        examPage.getUsernameElement().sendKeys("201205000078");
+        examPage.getUsernameElement().sendKeys(local);
     }
 
     public void passwordElement() {
-        examPage.getPasswordElement().sendKeys("585554");
+        examPage.getPasswordElement().sendKeys(value);
     }
 
     public void loginElement() {
@@ -44,5 +50,8 @@ public class ExamHandle {
     public void clickPJCJ() {
         examPage.getclickPJCJ().click();
     }
+
+    //仿真政务-填写并领购发票
+
 
 }
