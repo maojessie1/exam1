@@ -15,6 +15,6 @@ public class ExamHandle {
     public void usernameElement(){
         String text = examPage.getUsernameElement().getText();
         System.out.println("text = " + text);
-        examPage.getUsernameElement().sendKeys("201205000073");
+        examPage.getUsernameElement().sendKeys("201205000078");
     }
 }

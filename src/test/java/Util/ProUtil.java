@@ -41,7 +41,7 @@ public class ProUtil {
     public static void main(String[] args) {
 //        ProUtil proUtil = new ProUtil("F:\\Final exercise selenium\\element.properties");
 //        ProUtil proUtil = new ProUtil("E:\\Final exercise selenium1206\\Final exercise selenium\\ddd\\examElement.properties");
-        ProUtil proUtil = new ProUtil("E:\\exam1\\ddd\\examElement.properties");
+        ProUtil proUtil = new ProUtil("examElement.properties");
         String username = proUtil.getP("usernameElement");
         System.out.println(username);
     }

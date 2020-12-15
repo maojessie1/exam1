@@ -15,7 +15,7 @@ public class BasePage {
 
     public By getElement(String key) {
 //        ProUtil proUtil = new ProUtil("E:\\Final exercise selenium1206\\Final exercise selenium\\ddd\\examElement.properties");
-        ProUtil proUtil = new ProUtil("E:\\exam1\\ddd\\examElement.properties");
+        ProUtil proUtil = new ProUtil("examElement.properties");
         String elementKey = proUtil.getP(key);
         String local = elementKey.split(">>")[0];
         String value = elementKey.split(">>")[1];
