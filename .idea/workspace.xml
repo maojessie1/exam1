@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18e0b469-22d6-4779-ad2f-7c7c0d44c77f" name="Default Changelist" comment="">
+    <list default="true" id="18e0b469-22d6-4779-ad2f-7c7c0d44c77f" name="Default Changelist" comment="11">
       <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__classworlds_classworlds_1_1_alpha_2.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_73.xml" afterDir="false" />
@@ -81,53 +81,29 @@
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_safari_driver_3_141_59.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_support_3_141_59.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_testng_testng_6_14_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/test-classes/ksCases/ExamTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zleduExam.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/qaplug_profiles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ITest/Course.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ITest/LoginTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Util/IListenerShot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Util/IListenerShot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cases/BaseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cases/BuyCourseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cases/LoginCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cases/SureSubmitCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/handle/BuyCourseHandle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/handle/LoginHandle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/handle/SureSubmitHandle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ksCases/ExamTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ksCases/ExamTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/page/BuyCoursePage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/page/LoginPage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/page/SureSubmitPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/ITest/Course$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/ITest/Course$2.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/ITest/Course.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/ITest/LoginTest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/Util/IListenerShot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/Util/IListenerShot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/Util/ProUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/Util/ProUtil.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/cases/BuyCourseCase.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/cases/ExamTest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/cases/LKCtx.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/ITest/LKCtx.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/cases/LoginCase.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/cases/LoginLK.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/ITest/LoginLK.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/cases/SureSubmitCase.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/handle/BuyCourseHandle.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/handle/ExamHandle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/handle/ExamHandle.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/handle/LoginHandle.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/handle/SureSubmitHandle.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/page/BasePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/page/BasePage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/page/BuyCoursePage.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/page/ExamPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/page/ExamPage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/page/LoginPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/page/SureSubmitPage.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +165,16 @@
       <option name="presentableId" value="Default" />
       <updated>1608026386845</updated>
       <workItem from="1608026391973" duration="726000" />
+      <workItem from="1608037957644" duration="706000" />
     </task>
+    <task id="LOCAL-00001" summary="11">
+      <created>1608038213356</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1608038213356</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,6 +190,11 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="11" />
+    <option name="LAST_COMMIT_MESSAGE" value="11" />
   </component>
   <component name="WindowStateProjectService">
     <state width="591" height="179" key="GridCell.Tab.0.bottom" timestamp="1608027128844">
@@ -223,5 +213,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="591" height="179" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1608027128844" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1608038349764">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1608038349764" />
   </component>
 </project>
