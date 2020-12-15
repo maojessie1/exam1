@@ -201,7 +201,6 @@ public class ExamTest extends BaseCase {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-//        driver.findElement(By.cssSelector("#app .position-span")).click();
         examHandle.pageOneElement();
         List<WebElement> elements = driver.findElements(By.cssSelector("input.el-input__inner"));
         System.out.println("elements" + elements);
@@ -209,9 +208,7 @@ public class ExamTest extends BaseCase {
         elements.get(1).sendKeys("123456");
 
         driver.findElement(By.cssSelector("#app .position-span")).click();
-//        driver.findElement(By.cssSelector("#app .position-span.write-span3")).click();
         examHandle.pageFourElement();
-//        driver.findElement(By.cssSelector("#app .position-span.write-span4")).click();
         examHandle.pageFiveElement();
         elements = driver.findElements(By.cssSelector(".write-content input"));
         int valueIndex = 1;
