@@ -52,9 +52,10 @@ public class ExamPage extends BasePage {
     }
 
 
-    public WebElement getpageTwoElement() {
-        return getFindElement("pageTwo");
-    }
+/*    public WebElement getpageTwoElement() {
+        List<WebElement> pageTwo = getFindElements("pageTwo");
+        WebElement webElement = pageTwo.get(0);
+    }*/
 
     public WebElement getpageThreeElement() {
         return getFindElement("pageThree");
