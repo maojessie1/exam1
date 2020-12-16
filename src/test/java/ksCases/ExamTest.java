@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class ExamTest extends BaseCase {
     public WebDriver driver;
     ExamHandle examHandle;
-
+    HashMap<String, Map> formNameMap1 = null;
     @BeforeClass
     public void init() {
         System.out.println("hhh");
@@ -46,10 +46,9 @@ public class ExamTest extends BaseCase {
         examHandle.continueTwoElement();
         //进入到考试页面
         examHandle.entenElement();
-        HashMap<String, List> formNameMap = null;
-//        HashMap<String, Map> formNameMap1 = null;
+//        HashMap<String, List> formNameMap = null;
         //仿真政务-填写领购发票
-        taxForm(formNameMap, "taxForm");
+        taxForm(formNameMap1, "taxForm");
         //采集
 //        trainTicketForm(formNameMap, "trainTicketForm");
     }
@@ -116,16 +115,15 @@ public class ExamTest extends BaseCase {
     /**
      * 正式环境-填写并领购发票
      *
-     * @param formNameMap
+     * @param formNameMap1
      * @param taxForm
      */
 
-    public void taxForm(HashMap<String, List> formNameMap, String taxForm) {
+    public void taxForm(HashMap<String, Map> formNameMap1, String taxForm) {
         String str2 = "[{\"id\":152,\"eventName\":\"仿真-填写并领购发票\",\"eventType\":0,\"eventUrl\":\"https://zledu-oss-sx.cailian.net/cjdd/course/20200324/71271858-1585039487845.png\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3032\",\"eventTemplateUrl\":\"https://dummyedusx.cailian.net/#/writeInvoice\",\"eventTemplatePic\":\"modelName=purchase_invoice&modelType=formTemplate\",\"eventDesp\":\"\",\"roles\":null,\"modelType\":\"formTemplate\",\"modelName\":\"purchase_invoice\",\"type\":true,\"dynmaicParamReqList\":[{\"param\":\"platform\",\"value\":\"dummy\",\"type\":\"1\"},{\"param\":\"templateCode\",\"value\":\"001\",\"type\":\"1\"},{\"param\":\"roles\",\"value\":\"3032\",\"type\":\"1\"}],\"value\":{\"name\":\"填写并领购发票\",\"form\":{\"configure\":{\"formName\":\"taxForm\",\"tableNum1\":\"1\",\"tableRemarks1\":\"2\",\"tableNum2\":\"3\",\"tableRemarks2\":\"4\",\"taxNumber\":\"5\",\"taxName\":\"6\",\"name\":\"7\",\"mobileNum\":\"8\",\"detailAddress\":\"9\",\"postalCode\":\"10\",\"remarks\":\"11\",\"address\":\"东城区\",\"isYourSelfGet\":\"0\"},\"weightMapper\":{\"taxNumber\":\"8\",\"taxName\":\"8\",\"name\":\"8\",\"mobileNum\":\"8\",\"address\":\"8\",\"detailAddress\":\"8\",\"postalCode\":\"8\",\"isYourSelfGet\":\"8\",\"remarks\":\"8\",\"tableNum1\":\"7\",\"tableNum2\":\"7\",\"tableRemarks1\":\"7\",\"tableRemarks2\":\"7\"}},\"configureWidth\":\"250px\",\"scoreWidth\":\"90px\"},\"eventWeight\":\"100\",\"version\":0,\"versionStatus\":true,\"timestamp\":1607261701754,\"standParseType\":0,\"sort\":0}]";
 //        formNameMap = fetchData(str2);
-        formNameMap1 = fetchMapData(str2);
 
-        HashMap<String, Map> formNameMap1 = fetchMapData(str2);
+        formNameMap1 = fetchMapData(str2);
         Actions actions = new Actions(driver);
         try {
             Thread.sleep(2000);
@@ -235,14 +233,14 @@ public class ExamTest extends BaseCase {
                 }
                 String nowValue = allValue.substring(1, allValue.length() - 1);
                 if ("formName".equals(key)) {
-                    formNameMap.put(nowValue, map);
+                    formNameMap1.put(nowValue, map);
                 }
                 System.out.println(nowSetValue.getKey() + ":" + nowSetValue.getValue());
                 map.put(key, nowValue);
             }
 
         }
-        return formNameMap;
+        return formNameMap1;
     }
     /**
      * 读取json并解析json答案
