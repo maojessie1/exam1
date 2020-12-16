@@ -19,6 +19,7 @@ public class ExamTest extends BaseCase {
     public WebDriver driver;
     ExamHandle examHandle;
     HashMap<String, Map> formNameMap1 = null;
+
     @BeforeClass
     public void init() {
         System.out.println("hhh");
@@ -163,9 +164,33 @@ public class ExamTest extends BaseCase {
         Map<String, String> map = formNameMap1.get(taxForm);
 
         for (Map.Entry<String, String> nowSetValue : map.entrySet()) {
-            WebElement element = driver.findElement(By.cssSelector("[id='+"+nowSetValue.getKey()+"+']"));
-            // 需要根据类型处理  TODO
-            element.sendKeys(nowSetValue.getValue());
+            try {
+                List<WebElement> allelements = driver.findElements(By.id(nowSetValue.getKey()));
+                // 需要根据类型处理  TODO
+                if (allelements.size() == 0) continue;
+
+                if (allelements.size() == 1) {
+                    allelements.get(0).sendKeys(nowSetValue.getValue());
+                } else {
+                    driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div/div/div[3]/div[2]/div[2]/form/div[3]/div[1]/div/div/div/input")).click();
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    WebElement element = driver.findElement(By.cssSelector(".el-select-dropdown__list"));
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    allelements.get(0).click();
+                }
+
+            } catch (Exception e) {
+
+            }
+
         }
     }
 
