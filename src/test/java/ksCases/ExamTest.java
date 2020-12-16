@@ -23,7 +23,7 @@ public class ExamTest extends BaseCase {
     public void init() {
         System.out.println("hhh");
         driver = setBrowser("chrome");
-        driver.get("https://zledulk.cailian.net/#/login");
+        driver.get("https://zledulktest.cailian.net/#/login");
         driver.manage().window().maximize();
         //隐式等待，等待5s
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -47,10 +47,11 @@ public class ExamTest extends BaseCase {
         //进入到考试页面
         examHandle.entenElement();
         HashMap<String, List> formNameMap = null;
+//        HashMap<String, Map> formNameMap1 = null;
         //仿真政务-填写领购发票
         taxForm(formNameMap, "taxForm");
         //采集
-        trainTicketForm(formNameMap, "trainTicketForm");
+//        trainTicketForm(formNameMap, "trainTicketForm");
     }
 
     /**
@@ -113,7 +114,7 @@ public class ExamTest extends BaseCase {
 
 
     /**
-     * 填写并领购发票
+     * 正式环境-填写并领购发票
      *
      * @param formNameMap
      * @param taxForm
@@ -121,7 +122,10 @@ public class ExamTest extends BaseCase {
 
     public void taxForm(HashMap<String, List> formNameMap, String taxForm) {
         String str2 = "[{\"id\":152,\"eventName\":\"仿真-填写并领购发票\",\"eventType\":0,\"eventUrl\":\"https://zledu-oss-sx.cailian.net/cjdd/course/20200324/71271858-1585039487845.png\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3032\",\"eventTemplateUrl\":\"https://dummyedusx.cailian.net/#/writeInvoice\",\"eventTemplatePic\":\"modelName=purchase_invoice&modelType=formTemplate\",\"eventDesp\":\"\",\"roles\":null,\"modelType\":\"formTemplate\",\"modelName\":\"purchase_invoice\",\"type\":true,\"dynmaicParamReqList\":[{\"param\":\"platform\",\"value\":\"dummy\",\"type\":\"1\"},{\"param\":\"templateCode\",\"value\":\"001\",\"type\":\"1\"},{\"param\":\"roles\",\"value\":\"3032\",\"type\":\"1\"}],\"value\":{\"name\":\"填写并领购发票\",\"form\":{\"configure\":{\"formName\":\"taxForm\",\"tableNum1\":\"1\",\"tableRemarks1\":\"2\",\"tableNum2\":\"3\",\"tableRemarks2\":\"4\",\"taxNumber\":\"5\",\"taxName\":\"6\",\"name\":\"7\",\"mobileNum\":\"8\",\"detailAddress\":\"9\",\"postalCode\":\"10\",\"remarks\":\"11\",\"address\":\"东城区\",\"isYourSelfGet\":\"0\"},\"weightMapper\":{\"taxNumber\":\"8\",\"taxName\":\"8\",\"name\":\"8\",\"mobileNum\":\"8\",\"address\":\"8\",\"detailAddress\":\"8\",\"postalCode\":\"8\",\"isYourSelfGet\":\"8\",\"remarks\":\"8\",\"tableNum1\":\"7\",\"tableNum2\":\"7\",\"tableRemarks1\":\"7\",\"tableRemarks2\":\"7\"}},\"configureWidth\":\"250px\",\"scoreWidth\":\"90px\"},\"eventWeight\":\"100\",\"version\":0,\"versionStatus\":true,\"timestamp\":1607261701754,\"standParseType\":0,\"sort\":0}]";
-        formNameMap = fetchData(str2);
+//        formNameMap = fetchData(str2);
+        formNameMap1 = fetchMapData(str2);
+
+        HashMap<String, Map> formNameMap1 = fetchMapData(str2);
         Actions actions = new Actions(driver);
         try {
             Thread.sleep(2000);
@@ -140,7 +144,7 @@ public class ExamTest extends BaseCase {
 
         //点击开始答题按钮
         examHandle.startAnsweringButton();
-        List list = formNameMap.get(taxForm);
+//        List list = formNameMap.get(taxForm);
         WebElement iframeName = driver.findElement(By.name("ifinc"));
         driver.switchTo().frame(iframeName);
         try {
@@ -157,26 +161,95 @@ public class ExamTest extends BaseCase {
         driver.findElement(By.cssSelector("#app .position-span")).click();
         examHandle.pageFourElement();
         examHandle.pageFiveElement();
-        elements = driver.findElements(By.cssSelector(".write-content input"));
-        int valueIndex = 1;
-        for (WebElement nowElement : elements) {
-            String type = nowElement.getAttribute("type");
-            if ("text".equals(type)) {
-                nowElement.sendKeys(String.valueOf(list.get((valueIndex))));
-                valueIndex++;
-            } else if ("radio".equals(type)) {
 
-            }
+        Map<String, String> map = formNameMap1.get(taxForm);
+
+        for (Map.Entry<String, String> nowSetValue : map.entrySet()) {
+            WebElement element = driver.findElement(By.cssSelector("[id='+"+nowSetValue.getKey()+"+']"));
+            // 需要根据类型处理  TODO
+            element.sendKeys(nowSetValue.getValue());
         }
-
     }
 
+    public HashMap<String, List> fetchData(String str) {
+        HashMap<String, List> formNameMap = new HashMap<>();
+
+        //获取formName值
+        JsonParser jp = new JsonParser();
+        //将json字符串转化成json对象
+        JsonArray ja = jp.parse(str).getAsJsonArray();
+        int size = ja.size();
+        for (int i = 0; i < size; i++) {
+            JsonObject jo = (JsonObject) ja.get(i);
+            //取value的数组
+            System.out.println(i + "--" + jo.get("value"));
+            //把数组强转成json对象
+            JsonObject value = (JsonObject) jo.get("value");
+            value = (JsonObject) value.get("form");
+            value = (JsonObject) value.get("configure");
+
+            ArrayList list = new ArrayList();
+
+            Set<Map.Entry<String, JsonElement>> setValue = value.entrySet();
+            for (Map.Entry<String, JsonElement> nowSetValue : setValue) {
+                //输出key
+                String key = nowSetValue.getKey();
+                System.out.println("key--->" + key);
+                list.add(key);
+            }
+            Object o = list.get(1);
+            System.out.println(o);
+        }
+        return null;
+    }
+
+
+    public HashMap<String, Map> fetchMapData(String str) {
+        formNameMap1 = new HashMap<>();
+        //获取formName值
+        JsonParser jp = new JsonParser();
+        //将json字符串转化成json对象
+        JsonArray ja = jp.parse(str).getAsJsonArray();
+        int size = ja.size();
+        for (int i = 0; i < size; i++) {
+            JsonObject jo = (JsonObject) ja.get(i);
+            //取value的数组
+            System.out.println(i + "--" + jo.get("value"));
+            //把数组强转成json对象
+            JsonObject value = (JsonObject) jo.get("value");
+            value = (JsonObject) value.get("form");
+            value = (JsonObject) value.get("configure");
+
+            ArrayList list = new ArrayList();
+            Map map = new HashMap();
+
+            Set<Map.Entry<String, JsonElement>> setValue = value.entrySet();
+            for (Map.Entry<String, JsonElement> nowSetValue : setValue) {
+                //输出key
+                String key = nowSetValue.getKey();
+                System.out.println("key--->" + key);
+                String allValue = "";
+                if (nowSetValue.getValue() != null) {
+                    //根据key获取value
+                    allValue = nowSetValue.getValue().toString();
+                }
+                String nowValue = allValue.substring(1, allValue.length() - 1);
+                if ("formName".equals(key)) {
+                    formNameMap.put(nowValue, map);
+                }
+                System.out.println(nowSetValue.getKey() + ":" + nowSetValue.getValue());
+                map.put(key, nowValue);
+            }
+
+        }
+        return formNameMap;
+    }
     /**
      * 读取json并解析json答案
      *
      * @return
      */
-    public HashMap<String, List> fetchData(String str) {
+   /* public HashMap<String, List> fetchData(String str) {
         HashMap<String, List> formNameMap = new HashMap<>();
 
         //获取formName值
@@ -216,6 +289,7 @@ public class ExamTest extends BaseCase {
         }
         return formNameMap;
     }
+*/
 
 
 }
