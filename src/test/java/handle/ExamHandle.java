@@ -9,7 +9,7 @@ public class ExamHandle {
     ExamPage examPage;
 
     ProUtil proUtil = new ProUtil("cardNum.properties");
-    String elementKey = proUtil.getP("user2");
+    String elementKey = proUtil.getP("user4");
     String local = elementKey.split(">")[0];
     String value = elementKey.split(">")[1];
 
