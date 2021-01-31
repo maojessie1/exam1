@@ -1,13 +1,12 @@
 package Util;
 
 import com.google.common.io.Files;
-import ksCases.ExamTest;
+import HomePage.ExamTest;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
-import page.ExamPage;
 
 import java.io.File;
 import java.io.IOException;

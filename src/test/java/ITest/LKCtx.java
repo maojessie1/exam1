@@ -1,6 +1,6 @@
 package ITest;
 
-import cases.BaseCase;
+import cases.BaseDriver;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -14,13 +14,13 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 //copy
-public class LKCtx extends BaseCase {
+public class LKCtx extends BaseDriver {
     public WebDriver driver;
 
     @BeforeClass
     public void init() {
         driver = setBrowser("chrome");
-        driver.get("https://zledulk.cailian.net/#/login");
+        driver.get("https://zledulktest.cailian.net/#/login");
 
         driver.manage().window().maximize();
         //隐式等待，等待5s

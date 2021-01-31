@@ -1,6 +1,6 @@
-package ksCases;
+package HomePage;
 
-import cases.BaseCase;
+import cases.BaseDriver;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -8,14 +8,17 @@ import com.google.gson.JsonParser;
 import handle.ExamHandle;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
-public class ExamTest extends BaseCase {
+public class ExamTest extends BaseDriver {
     public WebDriver driver;
     ExamHandle examHandle;
     HashMap<String, Map> formNameMap1 = null;
@@ -24,7 +27,7 @@ public class ExamTest extends BaseCase {
     public void init() {
         System.out.println("hhh");
         driver = setBrowser("chrome");
-        driver.get("https://zledulktest.cailian.net/#/login");
+        driver.get("https://zledukstest.cailian.net/#/login");
         driver.manage().window().maximize();
         //隐式等待，等待5s
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -50,6 +53,8 @@ public class ExamTest extends BaseCase {
 //        HashMap<String, List> formNameMap = null;
         //仿真政务-填写领购发票
         taxForm(formNameMap1, "taxForm");
+        //仿真政务-人员在保登记
+        registrationPerson(formNameMap1, "personRegistrationForm");
         //采集
 //        trainTicketForm(formNameMap, "trainTicketForm");
     }
@@ -114,15 +119,13 @@ public class ExamTest extends BaseCase {
 
 
     /**
-     * 正式环境-填写并领购发票
+     * 填写并领购发票---第一题 序号为0
      *
      * @param formNameMap1
      * @param taxForm
      */
-
     public void taxForm(HashMap<String, Map> formNameMap1, String taxForm) {
-//        String str2 = "[{\"id\":152,\"eventName\":\"仿真-填写并领购发票\",\"eventType\":0,\"eventUrl\":\"https://zledu-oss-sx.cailian.net/cjdd/course/20200324/71271858-1585039487845.png\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3032\",\"eventTemplateUrl\":\"https://dummyedusx.cailian.net/#/writeInvoice\",\"eventTemplatePic\":\"modelName=purchase_invoice&modelType=formTemplate\",\"eventDesp\":\"\",\"roles\":null,\"modelType\":\"formTemplate\",\"modelName\":\"purchase_invoice\",\"type\":true,\"dynmaicParamReqList\":[{\"param\":\"platform\",\"value\":\"dummy\",\"type\":\"1\"},{\"param\":\"templateCode\",\"value\":\"001\",\"type\":\"1\"},{\"param\":\"roles\",\"value\":\"3032\",\"type\":\"1\"}],\"value\":{\"name\":\"填写并领购发票\",\"form\":{\"configure\":{\"formName\":\"taxForm\",\"tableNum1\":\"1\",\"tableRemarks1\":\"2\",\"tableNum2\":\"3\",\"tableRemarks2\":\"4\",\"taxNumber\":\"5\",\"taxName\":\"6\",\"name\":\"7\",\"mobileNum\":\"8\",\"detailAddress\":\"9\",\"postalCode\":\"10\",\"remarks\":\"11\",\"address\":\"东城区\",\"isYourSelfGet\":\"0\"},\"weightMapper\":{\"taxNumber\":\"8\",\"taxName\":\"8\",\"name\":\"8\",\"mobileNum\":\"8\",\"address\":\"8\",\"detailAddress\":\"8\",\"postalCode\":\"8\",\"isYourSelfGet\":\"8\",\"remarks\":\"8\",\"tableNum1\":\"7\",\"tableNum2\":\"7\",\"tableRemarks1\":\"7\",\"tableRemarks2\":\"7\"}},\"configureWidth\":\"250px\",\"scoreWidth\":\"90px\"},\"eventWeight\":\"100\",\"version\":0,\"versionStatus\":true,\"timestamp\":1607261701754,\"standParseType\":0,\"sort\":0}]";
-        String str2 = "[{\"id\":175,\"eventName\":\"仿真人员在保登记-2 - 新参保人员登记\",\"eventType\":0,\"eventUrl\":\"https://cjddcloud-test.oss-cn-beijing.aliyuncs.com/cjdd/course/20191103/9DF25730-1572781263892.jpg\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3001\",\"eventTemplateUrl\":\"https://dummyedutest.cailian.net/#/personRegistration\",\"eventTemplatePic\":\"modelName=newRegistration&modelType=formTemplate\",\"eventDesp\":\"王。\",\"roles\":null,\"modelType\":\"formTemplate\",\"modelName\":\"newRegistration\",\"type\":true,\"dynmaicParamReqList\":[{\"id\":39499,\"questionId\":6500,\"eventId\":175,\"param\":\"platform\",\"value\":\"dummy\",\"type\":1,\"sort\":0},{\"id\":39500,\"questionId\":6500,\"eventId\":175,\"param\":\"templateCode\",\"value\":\"008\",\"type\":1,\"sort\":0},{\"id\":39501,\"questionId\":6500,\"eventId\":175,\"param\":\"roles\",\"value\":\"3001\",\"type\":1,\"sort\":0}],\"value\":{\"name\":\"人员在保登记 - 新参保人员登记\",\"form\":{\"configure\":{\"formName\":\"personRegistrationForm\",\"formMapper\":{\"gmsfzh\":\"110101199003073730\"},\"cjxz\":[\"基本养老保险\",\"失业保险\",\"工伤保险\",\"生育保险\",\"基本医疗保险\"],\"gmsfzh\":\"110101199003073730\",\"hkszjx\":\"2\",\"hkszd\":\"3\",\"hkszyzbm\":\"4\",\"jzdlxdz\":\"5\",\"jzdlxdzyzba\":\"6\",\"dzyjdz\":\"7\",\"xzyjshbxdzddz\":\"8\",\"dzddzyzbm\":\"9\",\"cbrdh\":\"10\",\"cbrsj\":\"11\",\"sbyjgzsr\":\"12\",\"wtdfyhzh\":\"13\",\"ddyljg_1\":\"14\",\"ddyljg_2\":\"15\",\"ddyljg_3\":\"16\",\"ddyljg_4\":\"17\",\"ddyljg_5\":\"18\",\"lxrxm\":\"19\",\"lxrdh\":\"20\",\"bjgzjzzbm\":\"21\",\"xb\":\"男\",\"csrq\":\"2020-12-17\",\"mz\":\"汉族\",\"grsf\":\"工人\",\"gjdq\":\"中国\",\"cjgzrq\":\"2020-12-17\",\"jfrylb\":\"本市城镇职工\",\"hqdzdfs\":\"网上查询\",\"whcd\":\"博士研究生\",\"wtdfyhmc\":\"中国工商银行\",\"hkxz\":\"农业户口\",\"ylcbrylb\":\"本市城镇职工\",\"tsbs\":\"有\",\"hyzk\":\"离异\",\"nzflx\":\"机关事业单位职工农转非\",\"sxgrxfyy\":\"新参统\",\"nzgbjdwmc\":\"22\",\"yxjzrq\":\"2020-12-17\",\"pzzdrq\":\"2020-12-17\",\"xbgrjfyy\":\"新参统\",\"name\":\"张三\"},\"weightMapper\":{\"cjxz\":\"2\",\"name\":\"2\",\"gmsfzh\":\"2\",\"xb\":\"2\",\"csrq\":\"2\",\"mz\":\"2\",\"gjdq\":\"2\",\"grsf\":\"2\",\"cjgzrq\":\"2\",\"hkszjx\":\"2\",\"jfrylb\":\"2\",\"hkszd\":\"2\",\"hkszyzbm\":\"2\",\"jzdlxdz\":\"2\",\"jzdlxdzyzba\":\"2\",\"hqdzdfs\":\"2\",\"dzyjdz\":\"2\",\"whcd\":\"2\",\"xzyjshbxdzddz\":\"2\",\"dzddzyzbm\":\"2\",\"cbrdh\":\"2\",\"cbrsj\":\"2\",\"sbyjgzsr\":\"2\",\"wtdfyhmc\":\"2\",\"wtdfyhzh\":\"2\",\"hkxz\":\"2\",\"ylcbrylb\":\"2\",\"ddyljg_1\":\"2\",\"ddyljg_2\":\"2\",\"ddyljg_3\":\"3\",\"ddyljg_4\":\"3\",\"ddyljg_5\":\"3\",\"hyzk\":\"3\",\"tsbs\":\"3\",\"lxrxm\":\"3\",\"lxrdh\":\"3\",\"bjgzjzzbm\":\"3\",\"yxjzrq\":\"3\",\"nzgbjdwmc\":\"3\",\"pzzdrq\":\"3\",\"nzflx\":\"3\",\"xbgrjfyy\":\"3\",\"sxgrxfyy\":\"3\"},\"aggrementMapper\":{\"mz\":5,\"gjdq\":5,\"cjxz\":6}},\"configureWidth\":\"250px\",\"scoreWidth\":\"90px\"},\"eventWeight\":50,\"version\":0,\"versionStatus\":true,\"timestamp\":1608172310618,\"standParseType\":0,\"sort\":0},{\"id\":175,\"eventName\":\"仿真人员在保登记-2 - 新参保人员登记\",\"eventType\":0,\"eventUrl\":\"https://cjddcloud-test.oss-cn-beijing.aliyuncs.com/cjdd/course/20191103/9DF25730-1572781263892.jpg\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3001\",\"eventTemplateUrl\":\"https://dummyedutest.cailian.net/#/personRegistration\",\"eventTemplatePic\":\"modelName=newRegistration&modelType=formTemplate\",\"eventDesp\":\"王。\",\"roles\":null,\"modelType\":\"formTemplate\",\"modelName\":\"newRegistration\",\"type\":true,\"dynmaicParamReqList\":[{\"id\":39502,\"questionId\":6500,\"eventId\":175,\"param\":\"platform\",\"value\":\"dummy\",\"type\":1,\"sort\":1},{\"id\":39503,\"questionId\":6500,\"eventId\":175,\"param\":\"templateCode\",\"value\":\"008\",\"type\":1,\"sort\":1},{\"id\":39504,\"questionId\":6500,\"eventId\":175,\"param\":\"roles\",\"value\":\"3001\",\"type\":1,\"sort\":1}],\"value\":{\"name\":\"人员在保登记 - 新参保人员登记\",\"form\":{\"configure\":{\"formName\":\"personRegistrationForm\",\"formMapper\":{\"gmsfzh\":\"110101199003078275\"},\"cjxz\":[\"基本养老保险\",\"失业保险\",\"工伤保险\",\"生育保险\",\"基本医疗保险\"],\"name\":\"王五\",\"gmsfzh\":\"110101199003078275\",\"xb\":\"女\",\"csrq\":\"2020-12-17\",\"mz\":\"满族\",\"gjdq\":\"中国\",\"grsf\":\"农民\",\"cjgzrq\":\"2020-12-17\",\"hkszjx\":\"1\",\"jfrylb\":\"本市农村劳动力\",\"hkszd\":\"2\",\"hkszyzbm\":\"3\",\"jzdlxdz\":\"4\",\"jzdlxdzyzba\":\"5\",\"hqdzdfs\":\"网上查询\",\"dzyjdz\":\"6\",\"whcd\":\"硕士研究生\",\"xzyjshbxdzddz\":\"7\",\"dzddzyzbm\":\"8\",\"cbrdh\":\"9\",\"cbrsj\":\"10\",\"sbyjgzsr\":\"11\",\"wtdfyhmc\":\"中国工商银行\",\"wtdfyhzh\":\"12\",\"hkxz\":\"农业户口\",\"ylcbrylb\":\"本市城镇职工\",\"ddyljg_1\":\"13\",\"ddyljg_2\":\"14\",\"ddyljg_3\":\"15\",\"ddyljg_4\":\"16\",\"ddyljg_5\":\"17\",\"hyzk\":\"离异\",\"tsbs\":\"无\",\"lxrxm\":\"18\",\"lxrdh\":\"19\",\"bjgzjzzbm\":\"20\",\"yxjzrq\":\"2020-12-17\",\"nzgbjdwmc\":\"21\",\"pzzdrq\":\"2020-12-17\",\"nzflx\":\"机关事业单位职工农转非\",\"xbgrjfyy\":\"外区转\",\"sxgrxfyy\":\"新参统\"},\"weightMapper\":{\"cjxz\":\"2\",\"name\":\"2\",\"gmsfzh\":\"2\",\"xb\":\"2\",\"csrq\":\"2\",\"mz\":\"2\",\"gjdq\":\"2\",\"grsf\":\"2\",\"cjgzrq\":\"2\",\"hkszjx\":\"2\",\"jfrylb\":\"2\",\"hkszd\":\"2\",\"hkszyzbm\":\"2\",\"jzdlxdz\":\"2\",\"jzdlxdzyzba\":\"2\",\"hqdzdfs\":\"2\",\"dzyjdz\":\"2\",\"whcd\":\"2\",\"xzyjshbxdzddz\":\"2\",\"dzddzyzbm\":\"2\",\"cbrdh\":\"2\",\"cbrsj\":\"2\",\"sbyjgzsr\":\"2\",\"wtdfyhmc\":\"2\",\"wtdfyhzh\":\"2\",\"hkxz\":\"2\",\"ylcbrylb\":\"2\",\"ddyljg_1\":\"2\",\"ddyljg_2\":\"2\",\"ddyljg_3\":\"3\",\"ddyljg_4\":\"3\",\"ddyljg_5\":\"3\",\"hyzk\":\"3\",\"tsbs\":\"3\",\"lxrxm\":\"3\",\"lxrdh\":\"3\",\"bjgzjzzbm\":\"3\",\"yxjzrq\":\"3\",\"nzgbjdwmc\":\"3\",\"pzzdrq\":\"3\",\"nzflx\":\"3\",\"xbgrjfyy\":\"3\",\"sxgrxfyy\":\"3\"},\"aggrementMapper\":{\"mz\":5,\"gjdq\":5,\"cjxz\":6}},\"configureWidth\":\"250px\",\"scoreWidth\":\"90px\"},\"eventWeight\":50,\"version\":0,\"versionStatus\":true,\"timestamp\":1608172373153,\"standParseType\":0,\"sort\":1}]";
+        String str2 = "[{\"id\":152,\"eventName\":\"仿真-填写并领购发票\",\"eventType\":0,\"eventUrl\":\"https://zledu-oss-sx.cailian.net/cjdd/course/20200324/71271858-1585039487845.png\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3032\",\"eventTemplateUrl\":\"https://dummyedusx.cailian.net/#/writeInvoice\",\"eventTemplatePic\":\"modelName=purchase_invoice&modelType=formTemplate\",\"eventDesp\":\"\",\"roles\":null,\"modelType\":\"formTemplate\",\"modelName\":\"purchase_invoice\",\"type\":true,\"dynmaicParamReqList\":[{\"param\":\"platform\",\"value\":\"dummy\",\"type\":\"1\"},{\"param\":\"templateCode\",\"value\":\"001\",\"type\":\"1\"},{\"param\":\"roles\",\"value\":\"3032\",\"type\":\"1\"}],\"value\":{\"name\":\"填写并领购发票\",\"form\":{\"configure\":{\"formName\":\"taxForm\",\"tableNum1\":\"1\",\"tableRemarks1\":\"2\",\"tableNum2\":\"3\",\"tableRemarks2\":\"4\",\"taxNumber\":\"5\",\"taxName\":\"6\",\"name\":\"7\",\"mobileNum\":\"8\",\"detailAddress\":\"9\",\"postalCode\":\"10\",\"remarks\":\"11\",\"address\":\"朝阳区\",\"isYourSelfGet\":\"0\"},\"weightMapper\":{\"taxNumber\":\"8\",\"taxName\":\"8\",\"name\":\"8\",\"mobileNum\":\"8\",\"address\":\"8\",\"detailAddress\":\"8\",\"postalCode\":\"8\",\"isYourSelfGet\":\"8\",\"remarks\":\"8\",\"tableNum1\":\"7\",\"tableNum2\":\"7\",\"tableRemarks1\":\"7\",\"tableRemarks2\":\"7\"}},\"configureWidth\":\"250px\",\"scoreWidth\":\"90px\"},\"eventWeight\":\"100\",\"version\":0,\"versionStatus\":true,\"timestamp\":1607261701754,\"standParseType\":0,\"sort\":0}]";
 //        formNameMap = fetchData(str2);
 
         formNameMap1 = fetchMapData(str2);
@@ -167,6 +170,124 @@ public class ExamTest extends BaseCase {
         for (Map.Entry<String, String> nowSetValue : map.entrySet()) {
             try {
                 List<WebElement> allelements = driver.findElements(By.id(nowSetValue.getKey()));
+                // 需要根据类型处理
+                if (allelements.size() == 0) continue;
+
+                String classAttribute = allelements.get(0).getAttribute("class");
+                System.out.println("-------------------------->" + classAttribute);
+
+                if ("el-radio-group".equals(classAttribute)) {
+                    WebElement radioElement = allelements.get(0);
+                    List<WebElement> subRadioElements = radioElement.findElements(By.cssSelector("label"));
+                    for (WebElement subRadio : subRadioElements) {
+                        WebElement input = subRadio.findElement(By.cssSelector("input"));
+                        if (input.getAttribute("value").equals(nowSetValue.getValue())) {
+                            subRadio.findElement(By.cssSelector(".el-radio__input")).click();
+//                            input.click();
+                            break;
+                        }
+
+
+                    }
+                    continue;
+
+                }
+
+                if (allelements.size() == 1) {
+                    allelements.get(0).sendKeys(nowSetValue.getValue());
+                } else {
+
+                    WebElement typeElement = allelements.get(0);
+
+//                    if (classAttribute.)
+
+
+//                    allelements.get(0).click();
+                    driver.findElement(By.cssSelector("div>.el-input--small>.el-input__inner~span")).click();
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    for (int i = 0; i < allelements.size(); i++) {
+                        WebElement element = allelements.get(i);
+                        WebElement elements2 = element.findElement(By.cssSelector("span"));
+                        if (elements2 == null) {
+                            continue;
+                        }
+
+                        if (elements2.getText().equals(nowSetValue.getValue())) {
+                            element.click();
+                            break;
+                        }
+                    }
+
+//                    allelements.get(0).click();
+                }
+
+            } catch (Exception e) {
+
+            }
+
+
+        }
+
+        driver.findElement(By.cssSelector(".el-button.el-button--primary.el-button--small")).click();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        driver.navigate().refresh();
+        driver.manage().window().fullscreen();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void registrationPerson(HashMap<String, Map> formNameMap1, String personRegistrationForm) {
+        String str2 = "[{\"id\":175,\"eventName\":\"仿真人员在保登记-2 - 新参保人员登记\",\"eventType\":0,\"eventUrl\":\"https://cjddcloud-test.oss-cn-beijing.aliyuncs.com/cjdd/course/20191103/9DF25730-1572781263892.jpg\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3001\",\"eventTemplateUrl\":\"https://dummyedutest.cailian.net/#/personRegistration\",\"eventDesp\":\"王。\",\"roles\":null,\"modelType\":\"formTemplate\",\"modelName\":\"newRegistration\",\"type\":true,\"dynmaicParamReqList\":[{\"id\":40243,\"questionId\":6531,\"eventId\":175,\"param\":\"platform\",\"value\":\"dummy\",\"type\":1,\"sort\":0},{\"id\":40244,\"questionId\":6531,\"eventId\":175,\"param\":\"templateCode\",\"value\":\"001\",\"type\":1,\"sort\":0},{\"id\":40245,\"questionId\":6531,\"eventId\":175,\"param\":\"roles\",\"value\":\"3001\",\"type\":1,\"sort\":0}],\"value\":{\"name\":\"人员在保登记 - 新参保人员登记\",\"form\":{\"configure\":{\"formName\":\"personRegistrationForm\",\"formMapper\":{\"gmsfzh\":\"110101199003072172\"},\"cjxz\":[\"基本养老保险\",\"失业保险\",\"工伤保险\",\"生育保险\",\"基本医疗保险\"],\"name\":\"张三\",\"gmsfzh\":\"110101199003072172\",\"xb\":\"男\",\"csrq\":\"2021-01-28\",\"mz\":\"汉族\",\"gjdq\":\"中国\",\"grsf\":\"工人\",\"cjgzrq\":\"2021-01-30\",\"hkszjx\":\"1\",\"jfrylb\":\"本市城镇职工\",\"hkszd\":\"1\",\"hkszyzbm\":\"065500\",\"jzdlxdz\":\"1\",\"jzdlxdzyzba\":\"065500\",\"hqdzdfs\":\"网上查询\",\"dzyjdz\":\"11@qq.com\",\"whcd\":\"博士研究生\",\"xzyjshbxdzddz\":\"1\",\"dzddzyzbm\":\"1\",\"cbrdh\":\"13212121212\",\"cbrsj\":\"13212121212\",\"sbyjgzsr\":\"1000\",\"wtdfyhmc\":\"中国工商银行\",\"wtdfyhzh\":\"1\",\"hkxz\":\"农业户口\",\"ylcbrylb\":\"本市城镇职工\",\"ddyljg_1\":\"1\",\"ddyljg_2\":\"1\",\"ddyljg_3\":\"1\",\"ddyljg_4\":\"1\",\"ddyljg_5\":\"1\",\"hyzk\":\"未婚\",\"tsbs\":\"有\",\"lxrxm\":\"1\",\"lxrdh\":\"13212121212\",\"bjgzjzzbm\":\"1\",\"yxjzrq\":\"2021-01-30\",\"nzgbjdwmc\":\"1\",\"pzzdrq\":\"2021-01-30\",\"nzflx\":\"机关事业单位职工农转非\",\"xbgrjfyy\":\"外区转\",\"sxgrxfyy\":\"新参统\"},\"weightMapper\":{\"cjxz\":\"2\",\"name\":\"2\",\"gmsfzh\":\"2\",\"xb\":\"2\",\"csrq\":\"2\",\"mz\":\"2\",\"gjdq\":\"2\",\"grsf\":\"2\",\"cjgzrq\":\"2\",\"hkszjx\":\"2\",\"jfrylb\":\"2\",\"hkszd\":\"2\",\"hkszyzbm\":\"2\",\"jzdlxdz\":\"2\",\"jzdlxdzyzba\":\"2\",\"hqdzdfs\":\"2\",\"dzyjdz\":\"2\",\"whcd\":\"2\",\"xzyjshbxdzddz\":\"2\",\"dzddzyzbm\":\"2\",\"cbrdh\":\"2\",\"cbrsj\":\"2\",\"sbyjgzsr\":\"2\",\"wtdfyhmc\":\"2\",\"wtdfyhzh\":\"2\",\"hkxz\":\"2\",\"ylcbrylb\":\"2\",\"ddyljg_1\":\"2\",\"ddyljg_2\":\"2\",\"ddyljg_3\":\"3\",\"ddyljg_4\":\"3\",\"ddyljg_5\":\"3\",\"hyzk\":\"3\",\"tsbs\":\"3\",\"lxrxm\":\"3\",\"lxrdh\":\"3\",\"bjgzjzzbm\":\"3\",\"yxjzrq\":\"3\",\"nzgbjdwmc\":\"3\",\"pzzdrq\":\"3\",\"nzflx\":\"3\",\"xbgrjfyy\":\"3\",\"sxgrxfyy\":\"3\"},\"aggrementMapper\":{\"mz\":5,\"gjdq\":5,\"cjxz\":6}},\"configureWidth\":\"250px\",\"scoreWidth\":\"90px\"},\"eventWeight\":100,\"standParseType\":0,\"sort\":0}]";
+//        formNameMap = fetchData(str2);
+
+        formNameMap1 = fetchMapData(str2);
+
+        //调用去掉考试作弊弹框方法
+        removeAlert();
+        List<WebElement> elements1 = driver.findElements(By.cssSelector(".topic_num"));
+
+        int size = elements1.size();
+        System.out.println("size--------->" + size);
+        elements1.get(1).click();
+
+        //点击开始答题按钮
+        examHandle.startAnsweringButton();
+//        List list = formNameMap.get(taxForm);
+        WebElement iframeName = driver.findElement(By.name("ifinc"));
+        driver.switchTo().frame(iframeName);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Map<String, String> map = formNameMap1.get(personRegistrationForm);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector(".click_span")))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector(".click_span")))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector(".input_box>.input_name input")))).sendKeys("1");
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector(".input_box>div~div input")))).sendKeys("123456");
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector(".click_span")))).click();
+        String gmsfzh = map.get("gmsfzh");
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector(".el-input__inner")))).sendKeys(gmsfzh);
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div>button.el-button--mini")))).click();
+
+
+        for (Map.Entry<String, String> nowSetValue : map.entrySet()) {
+            try {
+                List<WebElement> allelements = driver.findElements(By.id(nowSetValue.getKey()));
                 // 需要根据类型处理  TODO
                 if (allelements.size() == 0) continue;
 
@@ -193,6 +314,22 @@ public class ExamTest extends BaseCase {
             }
 
         }
+
+
+    }
+
+    //去除考试过程中作弊弹框
+    private void removeAlert() {
+        Actions actions = new Actions(driver);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        actions.sendKeys(Keys.F12).perform();
+        String js = "document.getElementById(\"dialog\").remove();";
+        ((JavascriptExecutor) driver).executeScript(js);
+
     }
 
     public HashMap<String, List> fetchData(String str) {

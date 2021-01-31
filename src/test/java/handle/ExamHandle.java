@@ -54,7 +54,7 @@ public class ExamHandle {
 
     //仿真政务-填写并领购发票
 
-    public void pageOneElement(){
+    public void pageOneElement() {
         //#app .position-span
         examPage.getpageOneElement().click();
     }
@@ -66,20 +66,20 @@ public class ExamHandle {
     }
 */
 
-    public void pageThreeElement(){
+    public void pageThreeElement() {
         examPage.getpageThreeElement().click();
     }
 
-    public void pageFourElement(){
+    public void pageFourElement() {
         examPage.getpageFourElement().click();
     }
 
-    public void pageFiveElement(){
+    public void pageFiveElement() {
         examPage.getpageFiveElement().click();
     }
 
 
-    public void pageSixElement(){
+    public void pageSixElement() {
         examPage.getpageSixElement().click();
     }
 }

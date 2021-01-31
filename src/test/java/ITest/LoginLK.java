@@ -1,23 +1,20 @@
 package ITest;
 
-import cases.BaseCase;
-import com.alibaba.fastjson.JSON;
+import cases.BaseDriver;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
-public class LoginLK extends BaseCase {
+public class LoginLK extends BaseDriver {
     public WebDriver driver;
 
     @BeforeClass
@@ -38,7 +35,7 @@ public class LoginLK extends BaseCase {
         driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[3]/div/p[2]/input")).sendKeys("585554");
         driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[3]/div/button/span")).click();
         driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[3]/div/div[8]")).click();
-        driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[3]/div/p[2]/label/span[1]/s       pan")).click();
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[3]/div/p[2]/label/span[1]/span")).click();
         //进入到考试页面
         driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[3]/div/div[3]")).click();
         //点击开始答题按钮
