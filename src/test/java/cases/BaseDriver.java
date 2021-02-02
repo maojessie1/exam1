@@ -9,8 +9,8 @@ public class BaseDriver {
 
     public WebDriver setBrowser(String browser) {
         if (browser.equalsIgnoreCase("chrome")) {
-            System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe");
-//            System.setProperty("webdriver.chrome.driver", "C:\\Users\\Lenovo\\AppData\\Local\\Google\\Chrome\\Application\\chromedriver.exe");
+//            System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "C:\\Users\\Lenovo\\AppData\\Local\\Google\\Chrome\\Application\\chromedriver.exe");
             driver = new ChromeDriver();
 
         } else {
