@@ -53,13 +53,13 @@ public class ExamTest extends BaseDriver {
         //进入到考试页面
         examHandle.entenElement();
         //仿真政务-填写领购发票
-//        taxForm(formNameMap1, "taxForm");
+        taxForm(formNameMap1, "taxForm");
         //仿真政务-人员在保登记
 //        registrationPerson(formNameMap1, "personRegistrationForm");
         //采集
 //        trainTicketForm(formNameMap, "trainTicketForm");
 //        领购发票、增加商品服务档案和客户信息、三金室内设计公司代开含税增值税纸质普通发票。
-        customerMsgForm(formNameMap,"customerMsgForm");
+//        customerMsgForm(formNameMap,"customerMsgForm");
     }
 
     /**
@@ -95,13 +95,11 @@ public class ExamTest extends BaseDriver {
             e.printStackTrace();
         }
         //点击票据采集菜单
-        WebDriverWait wait = new WebDriverWait(driver,3);
+        WebDriverWait wait = new WebDriverWait(driver, 3);
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector(".el-menu-item.is-active")))).click();
 
 
-
-
-        }
+    }
 
 
     /**
@@ -267,8 +265,6 @@ public class ExamTest extends BaseDriver {
                             break;
                         }
                     }
-
-//                    allelements.get(0).click();
                 }
 
             } catch (Exception e) {
