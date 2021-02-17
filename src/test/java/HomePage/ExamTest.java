@@ -24,16 +24,24 @@ public class ExamTest extends BaseDriver {
     HashMap<String, Map> formNameMap1 = null;
     HashMap<String, List> formNameMap = null;
 
+    HashMap<String, String> convetMap = new HashMap<String, String>();
+
 
     @BeforeClass
     public void init() {
         System.out.println("hhh");
         driver = setBrowser("chrome");
-        driver.get("https://zledukstest.cailian.net/#/login");
+//        driver.get("https://zledukstest.cailian.net/#/login");
+        driver.get("https://zleduks.cailian.net/#/login");
+
         driver.manage().window().maximize();
         //隐式等待，等待5s
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         examHandle = new ExamHandle(driver);
+
+
+
+        convetMap.put("bank","bankName");
     }
 
     @Test
@@ -53,16 +61,17 @@ public class ExamTest extends BaseDriver {
         //进入到考试页面
         examHandle.entenElement();
         //仿真政务-填写领购发票
-        taxForm(formNameMap1, "taxForm");
+//        taxForm(formNameMap1, "taxForm");
         //仿真政务-人员在保登记
 //        registrationPerson(formNameMap1, "personRegistrationForm");
         //采集
 //        trainTicketForm(formNameMap, "trainTicketForm");
-//        领购发票、增加商品服务档案和客户信息、三金室内设计公司代开含税增值税纸质普通发票。
-//        customerMsgForm(formNameMap,"customerMsgForm");
+//       1226考（100分）上册 16题  领购发票、增加商品服务档案和客户信息、三金室内设计公司代开含税增值税纸质普通发票。
+        customerMsgForm(formNameMap,"customerMsgForm");
     }
 
     /**
+     * 1226考（100分）上册 16题
      * 北京紫霖财税共享服务中心（简称“财税共享中心”）是一家为企业提供财税咨询和代理服务的专业公司，2019年11月20日与宁波三金室内设计有限公司（简称“三金室内设计公司”）签订了代理记账合同。
      * 三金室内设计公司是一家从事室内设计的公司，为增值税小规模纳税人。公司主要服务内容为：设计服务（商品和服务税收分类：其他设计服务），计量单位：次，参考单价：8000元，税率3%。
      * 2019年12月16日三金室内设计公司与杭州味美餐饮管理有限公司签订了室内设计合同，合同注明1次含税设计服务9000元。设计服务已结束，款项已结清，杭州味美餐饮管理有限公司要求开具一张增值税普通发票。
@@ -96,7 +105,52 @@ public class ExamTest extends BaseDriver {
         }
         //点击票据采集菜单
         WebDriverWait wait = new WebDriverWait(driver, 3);
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector(".el-menu-item.is-active")))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div~ul>li>i[class=\"el-icon-search\"]")))).click();
+//        选择发票类型下拉框
+        List<WebElement> button2 = driver.findElements(By.cssSelector("[class=\"el-input__suffix-inner\"]"));
+        List<WebElement> xiala2 = driver.findElements(By.cssSelector("div>[class=\"el-scrollbar__view el-select-dropdown__list\"]"));
+        wait.until(ExpectedConditions.elementToBeClickable(button2.get(1))).click();
+        Actions actions = new Actions(driver);
+        actions.moveToElement(xiala2.get(1)).perform();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("ul>li[class=\"el-select-dropdown__item hover\"]")))).click();
+        System.out.println("选择普通发票成功");
+        //点击领购按钮
+        List<WebElement> linggou2 = driver.findElements(By.cssSelector("[class=\"el-form-item__content\"] button"));
+        wait.until(ExpectedConditions.elementToBeClickable(linggou2.get(0))).click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+//        输入88888888
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("span input[class=\"el-input__inner\"]")))).sendKeys("88888888");
+        List<WebElement> click2 = driver.findElements(By.cssSelector(".el-button.el-button--primary.el-button--small"));
+        wait.until(ExpectedConditions.elementToBeClickable(click2.get(1))).click();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+//        输入领购日期
+        List<WebElement> data4 = driver.findElements(By.cssSelector(".el-form-item__content .el-input__inner"));
+        wait.until(ExpectedConditions.elementToBeClickable(data4.get(3))).sendKeys("2019-12-16");
+//        输入领购数量
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div>div[class=\"el-input el-input--small\"]>input")))).sendKeys("25");
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div>div[class=\"el-input el-input--small\"]>input")))).click();
+
+//        点击确定按钮
+        List<WebElement> click4 = driver.findElements(By.cssSelector(".el-dialog__footer .el-button--small"));
+        wait.until(ExpectedConditions.elementToBeClickable(click4.get(3))).click();
+
+
+
 
 
     }
@@ -189,6 +243,8 @@ public class ExamTest extends BaseDriver {
 //        企业设立登记-zdh
 //        String str2 = "[{\"id\":131,\"eventName\":\"企业设立登记-1-点击事项\",\"eventType\":0,\"eventUrl\":\"https://cjddcloud-test.oss-cn-beijing.aliyuncs.com/cjdd/course/20191022/6A2B6856-1571728724741.jpg\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3001\",\"eventTemplateUrl\":\"https://dummyedutest.cailian.net/#/businessRegister\",\"eventDesp\":\"王。1\",\"roles\":null,\"modelType\":\"formTemplate\",\"modelName\":\"enterprise_establishment_registration\",\"type\":true,\"dynmaicParamReqList\":[{\"id\":40438,\"questionId\":6540,\"eventId\":131,\"param\":\"platform\",\"value\":\"dummy\",\"type\":1,\"sort\":0},{\"id\":40439,\"questionId\":6540,\"eventId\":131,\"param\":\"templateCode\",\"value\":\"001\",\"type\":1,\"sort\":0},{\"id\":40440,\"questionId\":6540,\"eventId\":131,\"param\":\"roles\",\"value\":\"3001\",\"type\":1,\"sort\":0}],\"value\":{\"name\":\"企业设立登记 - 点击步骤\",\"form\":{\"configure\":{},\"step\":{},\"weightMapper\":{},\"stepWeight\":{\"business_personal\":\"11\",\"business_login\":\"11\",\"business_company\":\"11\",\"business_establish\":\"11\",\"business_window\":\"11\",\"business_euser\":\"11\",\"business_handle\":\"11\",\"business_open\":\"11\",\"business_apply\":\"12\"},\"aggrementMapper\":{}},\"configureWidth\":\"250px\",\"scoreWidth\":\"60px\"},\"eventWeight\":10,\"standParseType\":0,\"sort\":0},{\"id\":132,\"eventName\":\"企业设立登记-6-人员信息\",\"eventType\":0,\"eventUrl\":\"https://cjddcloud-test.oss-cn-beijing.aliyuncs.com/cjdd/course/20191022/EE85CEF4-1571728765317.jpg\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3001\",\"eventTemplateUrl\":\"https://dummyedutest.cailian.net/#/businessRegister\",\"eventDesp\":\"zz\",\"roles\":null,\"type\":true,\"modelType\":\"basicPersonnelInfo\",\"dynmaicParamReqList\":[{\"id\":40441,\"questionId\":6540,\"eventId\":132,\"param\":\"platform\",\"value\":\"dummy\",\"type\":1,\"sort\":1},{\"id\":40442,\"questionId\":6540,\"eventId\":132,\"param\":\"templateCode\",\"value\":\"001\",\"type\":1,\"sort\":1},{\"id\":40443,\"questionId\":6540,\"eventId\":132,\"param\":\"roles\",\"value\":\"3001\",\"type\":1,\"sort\":1}],\"eventWeight\":20,\"value\":{\"formName\":\"perInfoForm\",\"directorList\":[{\"directorName\":\"姓名\",\"directorEnglish\":\"姓名(英文)\",\"directorType\":\"中华人民共和国居民身份证\",\"directorIdNum\":\"证件号码\",\"directorArea\":\"中国\",\"directorSex\":3,\"directorPhone\":\"联系电话\",\"directorDegree\":\"0\",\"directorNation\":\"汉族\",\"directorOutlook\":\"0\",\"directorDate\":\"2021-02-01\",\"directorPost\":\"职务\",\"directorStart\":\"2021-02-01\",\"directorEnd\":\"2021-02-01\",\"directorMode\":\"委派\",\"directorTerm\":\"0\",\"directorAddress1\":\"户籍登记\"}],\"managerList\":[],\"supervisorList\":[],\"other1List\":[{\"otherName\":\"姓名\",\"otherType\":\"中华人民共和国居民身份证\",\"otherIdNum\":\"证件号码\",\"otherPhone\":\"移动电话\",\"otherTel\":\"固定电话\",\"otherEmail\":\"电子邮箱\",\"otherStart\":\"2021-02-01\",\"otherEnd\":\"2021-02-03\"}],\"other2List\":[{\"otherName\":\"姓名\",\"otherType\":\"中华人民共和国居民身份证\",\"otherIdNum\":\"证件号码\",\"otherPhone\":\"移动电话\",\"otherTel\":\"固定电话\",\"otherEmail\":\"电子邮箱\",\"otherStart\":\"2021-02-01\",\"otherEnd\":\"2021-02-03\"}],\"other3List\":[{\"otherName\":\"姓名\",\"otherType\":\"中华人民共和国居民身份证\",\"otherIdNum\":\"证件号码\",\"otherPhone\":\"移动电话\",\"otherTel\":\"固定电话\",\"otherEmail\":\"电子邮箱\",\"otherStart\":\"2021-02-01\",\"otherEnd\":\"2021-02-02\"}],\"other4List\":[{\"otherName\":\"姓名\",\"otherType\":\"中华人民共和国居民身份证\",\"otherIdNum\":\"证件号码\",\"otherPhone\":\"移动电话\",\"otherTel\":\"固定电话\",\"otherEmail\":\"电子邮箱\",\"otherStart\":\"2021-02-01\",\"otherEnd\":\"2021-02-02\"}],\"other5List\":[{\"otherName\":\"姓名\",\"otherType\":\"中华人民共和国居民身份证\",\"otherIdNum\":\"证件号码\",\"otherPhone\":\"移动电话\",\"otherTel\":\"固定电话\",\"otherEmail\":\"电子邮箱\",\"otherStart\":\"2021-02-01\",\"otherEnd\":\"2021-02-03\"}],\"other6List\":[{\"otherName\":\"姓名\",\"otherType\":\"中华人民共和国居民身份证\",\"otherIdNum\":\"证件号码\",\"otherPhone\":\"移动电话\",\"otherTel\":\"固定电话\",\"otherEmail\":\"电子邮箱\",\"otherStart\":\"2021-02-01\",\"otherEnd\":\"2021-02-03\"}],\"weightMapper\":{\"directorList\":\"9\",\"managerList\":\"9\",\"supervisorList\":\"9\",\"legalTel\":\"8\",\"legalPhone\":\"8\",\"legalName\":\"8\",\"other1List\":\"8\",\"other2List\":\"8\",\"other3List\":\"8\",\"other4List\":\"8\",\"other5List\":\"8\",\"other6List\":\"9\",\"directorListMapper\":{\"directorName\":\"5\",\"directorEnglish\":\"5\",\"directorType\":\"5\",\"directorIdNum\":\"5\",\"directorArea\":\"5\",\"directorSex\":\"5\",\"directorPhone\":\"6\",\"directorDegree\":\"6\",\"directorNation\":\"6\",\"directorOutlook\":\"6\",\"directorDate\":\"6\",\"directorPost\":\"6\",\"directorStart\":\"6\",\"directorEnd\":\"6\",\"directorMode\":\"6\",\"directorTerm\":\"6\",\"directorAddress1\":\"10\"},\"managerListMapper\":{\"directorName\":\"5\",\"directorEnglish\":\"5\",\"directorType\":\"5\",\"directorIdNum\":\"5\",\"directorArea\":\"5\",\"directorSex\":\"5\",\"directorPhone\":\"6\",\"directorDegree\":\"6\",\"directorNation\":\"6\",\"directorOutlook\":\"6\",\"directorDate\":\"6\",\"directorPost\":\"6\",\"directorStart\":\"6\",\"directorEnd\":\"6\",\"directorMode\":\"6\",\"directorTerm\":\"6\",\"directorAddress1\":\"10\"},\"supervisorListMapper\":{\"directorName\":\"5\",\"directorEnglish\":\"5\",\"directorType\":\"5\",\"directorIdNum\":\"5\",\"directorArea\":\"5\",\"directorSex\":\"5\",\"directorPhone\":\"6\",\"directorDegree\":\"6\",\"directorNation\":\"6\",\"directorOutlook\":\"6\",\"directorDate\":\"6\",\"directorPost\":\"6\",\"directorStart\":\"6\",\"directorEnd\":\"6\",\"directorMode\":\"6\",\"directorTerm\":\"6\",\"directorAddress1\":\"10\"},\"other1ListMapper\":{\"otherName\":\"13\",\"otherType\":\"13\",\"otherIdNum\":\"13\",\"otherPhone\":\"13\",\"otherTel\":\"12\",\"otherEmail\":\"12\",\"otherStart\":\"12\",\"otherEnd\":\"12\"},\"other2ListMapper\":{\"otherName\":\"13\",\"otherType\":\"13\",\"otherIdNum\":\"13\",\"otherPhone\":\"13\",\"otherTel\":\"12\",\"otherEmail\":\"12\",\"otherStart\":\"12\",\"otherEnd\":\"12\"},\"other3ListMapper\":{\"otherName\":\"13\",\"otherType\":\"13\",\"otherIdNum\":\"13\",\"otherPhone\":\"13\",\"otherTel\":\"12\",\"otherEmail\":\"12\",\"otherStart\":\"12\",\"otherEnd\":\"12\"},\"other4ListMapper\":{\"otherName\":\"13\",\"otherType\":\"13\",\"otherIdNum\":\"13\",\"otherPhone\":\"13\",\"otherTel\":\"12\",\"otherEmail\":\"12\",\"otherStart\":\"12\",\"otherEnd\":\"12\"},\"other5ListMapper\":{\"otherName\":\"13\",\"otherType\":\"13\",\"otherIdNum\":\"13\",\"otherPhone\":\"13\",\"otherTel\":\"12\",\"otherEmail\":\"12\",\"otherStart\":\"12\",\"otherEnd\":\"12\"},\"other6ListMapper\":{\"otherName\":\"13\",\"otherType\":\"13\",\"otherIdNum\":\"13\",\"otherPhone\":\"13\",\"otherTel\":\"12\",\"otherEmail\":\"12\",\"otherStart\":\"12\",\"otherEnd\":\"12\"}},\"aggrementMapper\":{\"directorList\":99,\"managerList\":99,\"supervisorList\":99,\"other1List\":97,\"other2List\":97,\"other3List\":97,\"other4List\":97,\"other5List\":97,\"other6List\":97}},\"standParseType\":1,\"sort\":1},{\"id\":133,\"eventName\":\"企业设立登记-4-企业基本信息表单 \",\"eventType\":0,\"eventUrl\":\"https://cjddcloud-test.oss-cn-beijing.aliyuncs.com/cjdd/course/20191022/03F20D18-1571728815150.jpg\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3001\",\"eventTemplateUrl\":\"https://dummyedutest.cailian.net/#/businessRegister\",\"eventDesp\":\"王。1\",\"roles\":null,\"modelType\":\"formTemplate\",\"modelName\":\"basic_information_enterprise\",\"type\":true,\"dynmaicParamReqList\":[{\"id\":40444,\"questionId\":6540,\"eventId\":133,\"param\":\"platform\",\"value\":\"dummy\",\"type\":1,\"sort\":2},{\"id\":40445,\"questionId\":6540,\"eventId\":133,\"param\":\"templateCode\",\"value\":\"001\",\"type\":1,\"sort\":2},{\"id\":40446,\"questionId\":6540,\"eventId\":133,\"param\":\"roles\",\"value\":\"3001\",\"type\":1,\"sort\":2}],\"value\":{\"name\":\"企业设立登记 - 企业基本信息表单\",\"form\":{\"configure\":{\"formName\":\"infoForm\",\"jycs\":\"住所(经营场所)\",\"scjyd\":\"生产经营地\",\"zssyqx\":\"住所使用期限(年)\",\"yymj\":\"\",\"fwyt\":\"房屋用途\",\"zscqr\":\"住所(产权人)\",\"zscqlx\":\"有房产证\",\"zstgfs\":\"自有\",\"yyqx\":\"3\",\"zzfbs\":\"5\",\"isweizhi\":\"是\"},\"weightMapper\":{\"jycs\":\"9\",\"scjyd\":\"9\",\"zssyqx\":\"9\",\"yymj\":\"9\",\"fwyt\":\"9\",\"zscqr\":\"9\",\"zscqlx\":\"9\",\"zstgfs\":\"9\",\"yyqx\":\"9\",\"zzfbs\":\"9\",\"isweizhi\":\"10\"},\"aggrementMapper\":{\"zstgfs\":5,\"isweizhi\":5,\"zscqlx\":5}},\"configureWidth\":\"250px\",\"scoreWidth\":\"60px\"},\"eventWeight\":20,\"standParseType\":0,\"sort\":2},{\"id\":135,\"eventName\":\"企业设立登记-7-税务信息确认\",\"eventType\":0,\"eventUrl\":\"https://cjddcloud-test.oss-cn-beijing.aliyuncs.com/cjdd/course/20191022/E7D339D7-1571728965500.jpg\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3001\",\"eventTemplateUrl\":\"https://dummyedutest.cailian.net/#/businessRegister\",\"eventDesp\":\"王。\",\"roles\":null,\"modelType\":\"formTemplate\",\"modelName\":\"tax_information_confirmation\",\"type\":true,\"dynmaicParamReqList\":[{\"id\":40447,\"questionId\":6540,\"eventId\":135,\"param\":\"platform\",\"value\":\"dummy\",\"type\":1,\"sort\":3},{\"id\":40448,\"questionId\":6540,\"eventId\":135,\"param\":\"templateCode\",\"value\":\"001\",\"type\":1,\"sort\":3},{\"id\":40449,\"questionId\":6540,\"eventId\":135,\"param\":\"roles\",\"value\":\"3001\",\"type\":1,\"sort\":3}],\"value\":{\"name\":\"企业设立登记 - 税务信息确认\",\"form\":{\"configure\":{\"formName\":\"taxationInfoForm\",\"taxName\":\"姓名\",\"taxEmail\":\"电子邮箱\",\"taxType\":\"证件类型\",\"taxIdNum\":\"证件号码\",\"taxTel\":\"移动号码\",\"project1\":\"项目类别\",\"project2\":\"经营大类\",\"project3\":\"经营明细\",\"project4\":\"行业名称\",\"project5\":\"预计经营占比\"},\"weightMapper\":{\"taxName\":\"10\",\"taxEmail\":\"10\",\"taxType\":\"10\",\"taxIdNum\":\"10\",\"taxTel\":\"10\",\"project1\":\"10\",\"project2\":\"10\",\"project3\":\"10\",\"project4\":\"10\",\"project5\":\"10\"},\"aggrementMapper\":{}},\"configureWidth\":\"250px\",\"scoreWidth\":\"60px\"},\"eventWeight\":20,\"standParseType\":0,\"sort\":3},{\"id\":184,\"eventName\":\"企业设立登记-3-自然人股东信息\",\"eventType\":0,\"eventUrl\":\"https://cjddcloud-test.oss-cn-beijing.aliyuncs.com/cjdd/course/20191112/D5611119-1573543192430.jpg\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3001\",\"eventTemplateUrl\":\"https://dummyedutest.cailian.net/#/businessRegister\",\"eventDesp\":\"zz\",\"roles\":null,\"type\":true,\"modelType\":\"naturalPerson\",\"dynmaicParamReqList\":[{\"id\":40450,\"questionId\":6540,\"eventId\":184,\"param\":\"platform\",\"value\":\"dummy\",\"type\":1,\"sort\":4},{\"id\":40451,\"questionId\":6540,\"eventId\":184,\"param\":\"templateCode\",\"value\":\"001\",\"type\":1,\"sort\":4},{\"id\":40452,\"questionId\":6540,\"eventId\":184,\"param\":\"roles\",\"value\":\"3001\",\"type\":1,\"sort\":4}],\"eventWeight\":20,\"value\":{\"formName\":\"shareholderForm\",\"natural\":[{\"ruleName\":\"姓名\",\"ruleType\":\"身份证号码\",\"ruleNation\":\"汉族\",\"ruleInvestor\":\"自然人股东\",\"city\":\"北京市\",\"area\":\"户籍登记地\",\"detail\":\"户籍登记地\",\"date1\":\"2021-02-01\",\"date2\":\"2021-02-02\",\"tableData\":[{\"cze\":\"1\",\"czfs\":\"0\",\"czrq\":\"2021-02-01\"}],\"totalCze\":1}],\"notNatural\":[{\"ruleName\":\"单位名称\",\"ruleType\":\"法人股东\",\"ruleLicence\":\"企业法人营业执照\",\"ruleLicenceNum\":\"证件号码\",\"ruleLegal\":\"法定代表人\",\"ruleLegalType\":\"中华人民共和国居民身份证\",\"city\":\"北京市\",\"area\":\"住所\",\"detail\":\"住所\",\"tableData\":[{\"cze\":\"1\",\"czfs\":\"0\",\"czrq\":\"2021-02-01\"}],\"totalCze\":1,\"date1\":\"2021-02-01\",\"date2\":\"2021-02-03\",\"ruleArea\":\"中国\"}],\"weightMapper\":{\"natural\":\"50\",\"notNatural\":\"50\",\"naturalMapper\":{\"ruleName\":\"10\",\"ruleType\":\"10\",\"ruleNation\":\"10\",\"ruleInvestor\":\"10\",\"city\":\"4\",\"area\":\"3\",\"detail\":\"3\",\"date1\":\"10\",\"date2\":\"10\",\"totalCze\":\"30\"},\"notNaturalMapper\":{\"ruleName\":\"8\",\"ruleType\":\"8\",\"ruleLicence\":\"8\",\"ruleLicenceNum\":\"8\",\"ruleLegal\":\"8\",\"ruleLegalType\":\"8\",\"city\":\"3\",\"area\":\"3\",\"detail\":\"2\",\"totalCze\":\"20\",\"date1\":\"8\",\"date2\":\"8\",\"ruleArea\":\"8\"}},\"aggrementMapper\":{\"natural\":99,\"notNatural\":99}},\"standParseType\":1,\"sort\":4},{\"id\":185,\"eventName\":\"企业设立登记-2-企业起名\",\"eventType\":0,\"eventUrl\":\"https://cjddcloud-test.oss-cn-beijing.aliyuncs.com/cjdd/course/20191114/F4517E0E-1573698043313.jpg\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3001\",\"eventTemplateUrl\":\"https://dummyedutest.cailian.net/#/businessRegister\",\"eventDesp\":\"王。\",\"roles\":null,\"modelType\":\"formTemplate\",\"modelName\":\"shareholder_naming\",\"type\":true,\"dynmaicParamReqList\":[{\"id\":40453,\"questionId\":6540,\"eventId\":185,\"param\":\"platform\",\"value\":\"dummy\",\"type\":1,\"sort\":5},{\"id\":40454,\"questionId\":6540,\"eventId\":185,\"param\":\"templateCode\",\"value\":\"001\",\"type\":1,\"sort\":5},{\"id\":40455,\"questionId\":6540,\"eventId\":185,\"param\":\"roles\",\"value\":\"3001\",\"type\":1,\"sort\":5}],\"value\":{\"name\":\"企业设立登记 - 公司起名\",\"form\":{\"configure\":{\"formName\":\"setNameForm\",\"zihao\":\"字号\",\"hytd\":\"商贸(主营业务：林业产品批发)\",\"zzxs\":\"有限公司\",\"scztszd\":\"西城区\"},\"step\":{},\"weightMapper\":{\"zihao\":\"25\",\"hytd\":\"25\",\"zzxs\":\"25\",\"scztszd\":\"25\"},\"stepWeight\":{},\"aggrementMapper\":{\"mainBusiness\":5}},\"configureWidth\":\"250px\",\"scoreWidth\":\"60px\"},\"eventWeight\":5,\"standParseType\":0,\"sort\":5},{\"id\":190,\"eventName\":\"企业设立登记-5-经营范围\",\"eventType\":0,\"eventUrl\":\"https://cjddcloud-test.oss-cn-beijing.aliyuncs.com/cjdd/course/20191118/B93E9822-1574058471627.jpg\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3001\",\"eventTemplateUrl\":\"https://dummyedutest.cailian.net/#/businessRegister\",\"eventDesp\":\"王。\",\"roles\":null,\"type\":true,\"modelType\":\"businessScope\",\"dynmaicParamReqList\":[{\"id\":40456,\"questionId\":6540,\"eventId\":190,\"param\":\"platform\",\"value\":\"dummy\",\"type\":1,\"sort\":6},{\"id\":40457,\"questionId\":6540,\"eventId\":190,\"param\":\"templateCode\",\"value\":\"001\",\"type\":1,\"sort\":6},{\"id\":40458,\"questionId\":6540,\"eventId\":190,\"param\":\"roles\",\"value\":\"3001\",\"type\":1,\"sort\":6}],\"eventWeight\":5,\"value\":{\"formName\":\"busiScopeForm\",\"checkList\":[\"0\"],\"businessScope\":\"\",\"weightMapper\":{\"checkList\":\"80\",\"businessScope\":\"20\"},\"aggrementMapper\":{\"checkList\":98}},\"standParseType\":1,\"sort\":6}]";
 //        formNameMap = fetchData(str2);
+
+
 
 
         formNameMap1 = fetchMapData(str2);
@@ -388,8 +444,11 @@ public class ExamTest extends BaseDriver {
             System.out.println(i + "--" + jo.get("value"));
             //把数组强转成json对象
             JsonObject value = (JsonObject) jo.get("value");
-            value = (JsonObject) value.get("form");
-            value = (JsonObject) value.get("configure");
+
+            if ( value.get("form")!=null ){
+                value = (JsonObject) value.get("form");
+                value = (JsonObject) value.get("configure");
+            }
 
             ArrayList list = new ArrayList();
 
