@@ -66,8 +66,84 @@ public class ExamTest extends BaseDriver {
         //采集
 //        trainTicketForm(formNameMap, "trainTicketForm");
 //       1226考（100分）上册 16题  领购发票、增加商品服务档案和客户信息、三金室内设计公司代开含税增值税纸质普通发票。
-        customerMsgForm(formNameMap, "customerMsgForm");
+//        customerMsgForm(formNameMap, "customerMsgForm");
+        //17题
+        airplainTravelForm(formNameMap, "airplainTravelForm");
+
     }
+
+
+    /**
+     * 1226考 上册 第二题实操题，17
+     * 北京紫霖财税共享服务中心（简称“财税共享中心”）是一家为企业提供财税咨询和代理服务的专业公司，
+     * 2019年11月26日与北京四海家具有限公司（简称“四海家具公司”）签订了代理记账合同。
+     * 四海家具公司是一家从事家具生产与销售的公司，为增值税一般纳税人。
+     * 财税共享中心票据岗员工周明收到四海家具公司送来的12月份部分票据，为总经办人员外出开会发生的费用，
+     * 公司差旅费报销采取凭票报销方式，无其他补助项目，需进行相关会计科目的税目明细辅助核算。
+     * 要求：
+     * （1）请为四海家具公司对相关票据进行采集、整理、审核（住宿发票、银行回单调整至其他票据类别）；
+     * （2）根据相关票据采用“费用报销单”方式，编制1张记账凭证。
+     */
+
+    public void airplainTravelForm(HashMap<String, List> formNameMap, String airplainTravelForm) {
+        String str2 = "[{\"id\":243,\"eventName\":\"财天下_飞机行程单票据采集\",\"eventType\":1,\"eventUrl\":\"https://zledu-oss-sx.cailian.net/cjdd/course/20191212/EC8B3DBA-1576149866401.jpg\",\"eventParam\":\"platform=ctx&templateCode={001}&roles=3001\",\"eventTemplateUrl\":\"/#/ctx/home\",\"eventTemplatePic\":\"modelName=itinerary_bill_information&modelType=formTemplate\",\"eventDesp\":\"\",\"roles\":null,\"modelType\":\"formTemplate\",\"modelName\":\"itinerary_bill_information\",\"type\":true,\"dynmaicParamReqList\":[{\"id\":136388,\"questionId\":9032,\"eventId\":243,\"param\":\"platform\",\"value\":\"ctx\",\"type\":1,\"sort\":0},{\"id\":136389,\"questionId\":9032,\"eventId\":243,\"param\":\"templateCode\",\"value\":\"3018\",\"type\":1,\"sort\":0},{\"id\":136390,\"questionId\":9032,\"eventId\":243,\"param\":\"roles\",\"value\":\"3006\",\"type\":1,\"sort\":0}],\"value\":{\"name\":\"票天下_行程单票据信息\",\"isOCR\":3,\"form\":{\"configure\":{\"formName\":\"airplainTravelForm\",\"formMapper\":{\"name\":\"周伟\",\"data\":\"2019-12-17\",\"ticketRates\":\"570\"},\"name\":\"周伟\",\"data\":\"2019-12-17\",\"ticketRates\":\"570\"},\"weightMapper\":{\"name\":\"33\",\"data\":\"33\",\"ticketRates\":\"34\"},\"aggrementMapper\":{}},\"configureWidth\":\"250px\",\"scoreWidth\":\"70px\"},\"eventWeight\":15,\"standParseType\":0,\"sort\":0,\"versionStatus\":true},{\"id\":243,\"eventName\":\"财天下_飞机行程单票据采集\",\"eventType\":1,\"eventUrl\":\"https://zledu-oss-sx.cailian.net/cjdd/course/20191212/EC8B3DBA-1576149866401.jpg\",\"eventParam\":\"platform=ctx&templateCode={001}&roles=3001\",\"eventTemplateUrl\":\"/#/ctx/home\",\"eventTemplatePic\":\"modelName=itinerary_bill_information&modelType=formTemplate\",\"eventDesp\":\"\",\"roles\":null,\"modelType\":\"formTemplate\",\"modelName\":\"itinerary_bill_information\",\"type\":true,\"dynmaicParamReqList\":[{\"id\":136391,\"questionId\":9032,\"eventId\":243,\"param\":\"platform\",\"value\":\"ctx\",\"type\":1,\"sort\":1},{\"id\":136392,\"questionId\":9032,\"eventId\":243,\"param\":\"templateCode\",\"value\":\"3018\",\"type\":1,\"sort\":1},{\"id\":136393,\"questionId\":9032,\"eventId\":243,\"param\":\"roles\",\"value\":\"3006\",\"type\":1,\"sort\":1}],\"value\":{\"name\":\"票天下_行程单票据信息\",\"isOCR\":3,\"form\":{\"configure\":{\"formName\":\"airplainTravelForm\",\"formMapper\":{\"name\":\"周伟\",\"data\":\"2019-12-20\",\"ticketRates\":\"530.00\"},\"name\":\"周伟\",\"data\":\"2019-12-20\",\"ticketRates\":\"530.00\"},\"weightMapper\":{\"name\":\"33\",\"data\":\"33\",\"ticketRates\":\"34\"},\"aggrementMapper\":{}},\"configureWidth\":\"250px\",\"scoreWidth\":\"70px\"},\"eventWeight\":15,\"standParseType\":0,\"sort\":1,\"versionStatus\":true},{\"id\":168,\"eventName\":\"财天下凭证记账分录\",\"eventType\":1,\"eventUrl\":\"https://zledu-oss-sx.cailian.net/cjdd/course/20191219/1653EB79-1576768309975.png\",\"eventParam\":\"platform=ctx&templateCode={001}&roles=3002\",\"eventTemplateUrl\":\"/#/ctx/home\",\"eventTemplatePic\":\"modelType=accountingVouchers\",\"eventDesp\":\"\",\"roles\":null,\"type\":true,\"modelType\":\"accountingVouchers\",\"dynmaicParamReqList\":[{\"id\":136394,\"questionId\":9032,\"eventId\":168,\"param\":\"platform\",\"value\":\"ctx\",\"type\":1,\"sort\":2},{\"id\":136395,\"questionId\":9032,\"eventId\":168,\"param\":\"templateCode\",\"value\":\"3018\",\"type\":1,\"sort\":2},{\"id\":136396,\"questionId\":9032,\"eventId\":168,\"param\":\"roles\",\"value\":\"3006\",\"type\":1,\"sort\":2}],\"eventWeight\":70,\"value\":{\"formName\":\"manualEvidenceForm\",\"formMapper\":[{\"accountId\":3925316080960653,\"amountDr\":\"2122.17000000\",\"amountCr\":\"\"},{\"accountId\":3925316080895019,\"amountDr\":\"90.83000000\",\"amountCr\":\"\"},{\"accountId\":3925316080829441,\"amountDr\":\"\",\"amountCr\":\"2213.00000000\"}],\"docType\":\"记\",\"docSourceTypeId\":105,\"attachedVoucherNum\":\"4\",\"voucherDate\":\"2019-12-21\",\"entrys\":[{\"summary\":\"报销差旅费\",\"accountId\":3925316080960653,\"amountDr\":\"2122.17000000\",\"amountCr\":\"\"},{\"summary\":\"报销差旅费\",\"accountId\":3925316080895019,\"amountDr\":\"90.83000000\",\"amountCr\":\"\",\"taxItemName\":\"旅客运输\"},{\"summary\":\"报销差旅费\",\"accountId\":3925316080829441,\"amountDr\":\"\",\"amountCr\":\"2213.00000000\"}],\"weightMapper\":{\"voucherDate\":\"15\",\"summary\":\"0\",\"entrys\":\"80\",\"attachedVoucherNum\":\"5\",\"docSourceTypeId\":\"0\"},\"aggrementMapper\":{\"entrys\":104,\"voucherDate\":1,\"docSourceTypeId\":90}},\"standParseType\":1,\"sort\":2,\"versionStatus\":true}]";
+        formNameMap = fetchData(str2);
+        removeAlert();
+
+        //输入题目编号
+        List<WebElement> elements = driver.findElements(By.cssSelector(".topic_num"));
+        int size = elements.size();
+        System.out.println(size + "size。。。。。。。。。。");
+        elements.get(16).click();
+
+        //点击开始答题按钮
+        examHandle.startAnsweringButton();
+        WebElement iframeName = driver.findElement(By.name("ifinc"));
+        driver.switchTo().frame(iframeName);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        WebElement element;
+        List<WebElement> elements1;
+
+        //点击票据采集菜单
+        examHandle.clickPJCJ();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        JavascriptExecutor js1 = (JavascriptExecutor) driver;
+        js1.executeScript("return document.getElementsByClassName('el-button el-button--primary el-button--mini is-plain')[0].click();");
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        js1.executeScript("return document.getElementsByClassName(\"el-checkbox__inner\")[0].click();");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        js1.executeScript("return document.getElementsByClassName(\"el-button el-button--primary el-button--small\")[0].click();");
+
+        js1.executeScript("return document.getElementsByClassName(\"el-button el-button--primary el-button--mini is-plain\")[3].click();");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+    }
+
 
     /**
      * 1226考（100分）上册 16题
@@ -321,6 +397,16 @@ public class ExamTest extends BaseDriver {
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         System.out.println("点击暂存成功！");
 
+        //刷新页面，回到答题首页
+        driver.navigate().refresh();
+        driver.manage().window().fullscreen();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("回到首页------》");
 
     }
 
