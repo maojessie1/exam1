@@ -40,8 +40,7 @@ public class ExamTest extends BaseDriver {
         examHandle = new ExamHandle(driver);
 
 
-
-        convetMap.put("bank","bankName");
+        convetMap.put("bank", "bankName");
     }
 
     @Test
@@ -67,7 +66,7 @@ public class ExamTest extends BaseDriver {
         //采集
 //        trainTicketForm(formNameMap, "trainTicketForm");
 //       1226考（100分）上册 16题  领购发票、增加商品服务档案和客户信息、三金室内设计公司代开含税增值税纸质普通发票。
-        customerMsgForm(formNameMap,"customerMsgForm");
+        customerMsgForm(formNameMap, "customerMsgForm");
     }
 
     /**
@@ -104,11 +103,12 @@ public class ExamTest extends BaseDriver {
             e.printStackTrace();
         }
         WebDriverWait wait = new WebDriverWait(driver, 3);
+        WebElement element;
         //点击发票领购菜单
-     /*   wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div~ul>li>i[class=\"el-icon-search\"]")))).click();
+        /*wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div~ul>li>i[class=\"el-icon-search\"]")))).click();
         System.out.println("step1点击发票领购菜单成功！");
 //        点击发票类型弹出下拉框
-        WebElement element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/form/div[2]/div/div/div/input"));
+        element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/form/div[2]/div/div/div/input"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         System.out.println("step2点击发票类型弹框成功！");
         try {
@@ -171,7 +171,7 @@ public class ExamTest extends BaseDriver {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
 
 //        点击商品服务档案菜单
         WebElement element3 = driver.findElement(By.cssSelector(".el-icon-box"));
@@ -218,7 +218,7 @@ public class ExamTest extends BaseDriver {
         wait.until(ExpectedConditions.elementToBeClickable(element10)).sendKeys("3");
         System.out.println("输入税率成功");
 
-//        WebElement element11 = driver.findElement(By.cssSelector("el-button el-button--primary el-button--small"));
+
         WebElement element11 = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[2]/div/div/div[3]/span/button[2]"));
         wait.until(ExpectedConditions.elementToBeClickable(element11)).click();
         System.out.println("新增商品页面输入完成，点击确定按钮成功！");
@@ -227,9 +227,9 @@ public class ExamTest extends BaseDriver {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
+        }
         //客户信息管理菜单
-        WebElement element = driver.findElement(By.cssSelector("[class=\"el-icon-s-custom\"]"));
+        element = driver.findElement(By.cssSelector("[class=\"el-icon-s-custom\"]"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         System.out.println("点击客户信息管理菜单成功！");
         try {
@@ -238,18 +238,88 @@ public class ExamTest extends BaseDriver {
             e.printStackTrace();
         }
 //        点击新增按钮
-        WebElement element1 = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/div[1]/button[1]"));
-        wait.until(ExpectedConditions.elementToBeClickable(element1)).click();
+        element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/div[1]/button[1]"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         System.out.println("点击新增按钮成功！");
 
         List<WebElement> elements2 = driver.findElements(By.cssSelector("[class=\"customer-info\"] [class=\"el-input__inner\"]"));
         for (int i = 2; i < elements2.size(); i++) {
-            if (i>=3 && i<13){
+            if (i >= 3 && i < 13) {
                 elements2.get(i).sendKeys("111111111111111");
             }
         }
-
         System.out.println("输入客户名称等信息成功!");
+
+        element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div[2]/div/div[2]/form/div[4]/div/div/div/div/input"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).clear();
+        wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys("13212121212");
+
+        element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div[2]/div/div[1]/button[1]"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        System.out.println("点击保存按钮成功！");
+
+
+//        点击发票开具菜单
+
+        element = driver.findElement(By.cssSelector("i[class=\"el-icon-date\"]"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        System.out.println("点击发票开具菜单成功！");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //点击新增按钮
+        element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[1]/div[1]/button[1]"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        System.out.println("点击新增按钮成功！");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //点击名称和货物或应税劳务、服务名称
+        List<WebElement> elements10 = driver.findElements(By.cssSelector("[class=\"row-input el-input el-input--mini el-input--suffix\"]>input"));
+        wait.until(ExpectedConditions.elementToBeClickable(elements10.get(0))).click();
+
+        element = driver.findElement(By.cssSelector(".buy-name-dialog .el-dialog__wrapper .el-dialog__body"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //选择客户
+//        element = driver.findElement(By.cssSelector("[class='el-table__row']>[class='el-table_11_column_108 is-center']"));
+        element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div/div[4]/div/div/div[2]/div/div[2]/div/div[3]/table/tbody/tr/td[2]/div"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //选择货物或应税劳务、服务名称
+        wait.until(ExpectedConditions.elementToBeClickable(elements10.get(1))).click();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div/div[5]/div/div/div[2]/div/div[2]/div[2]/div/div[3]/table/tbody/tr[2]/td[2]/div"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        //输入数量
+        element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div/div[3]/div/div/div[2]/div/div[3]/table/tbody/tr/td[5]/div/div/input"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys("2");
+        System.out.println("输入数量成功");
+        //点击暂存
+        element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div/div[1]/button[1]"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        System.out.println("点击暂存成功！");
 
 
     }
@@ -342,8 +412,6 @@ public class ExamTest extends BaseDriver {
 //        企业设立登记-zdh
 //        String str2 = "[{\"id\":131,\"eventName\":\"&#x4F01;&#x4E1A;&#x8BBE;&#x7ACB;&#x767B;&#x8BB0;-1-&#x70B9;&#x51FB;&#x4E8B;&#x9879;\",\"eventType\":0,\"eventUrl\":\"https://cjddcloud-test.oss-cn-beijing.aliyuncs.com/cjdd/course/20191022/6A2B6856-1571728724741.jpg\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3001\",\"eventTemplateUrl\":\"https://dummyedutest.cailian.net/#/businessRegister\",\"eventDesp\":\"&#x738B;&#x3002;1\",\"roles\":null,\"modelType\":\"formTemplate\",\"modelName\":\"enterprise_establishment_registration\",\"type\":true,\"dynmaicParamReqList\":[{\"id\":40438,\"questionId\":6540,\"eventId\":131,\"param\":\"platform\",\"value\":\"dummy\",\"type\":1,\"sort\":0},{\"id\":40439,\"questionId\":6540,\"eventId\":131,\"param\":\"templateCode\",\"value\":\"001\",\"type\":1,\"sort\":0},{\"id\":40440,\"questionId\":6540,\"eventId\":131,\"param\":\"roles\",\"value\":\"3001\",\"type\":1,\"sort\":0}],\"value\":{\"name\":\"&#x4F01;&#x4E1A;&#x8BBE;&#x7ACB;&#x767B;&#x8BB0; - &#x70B9;&#x51FB;&#x6B65;&#x9AA4;\",\"form\":{\"configure\":{},\"step\":{},\"weightMapper\":{},\"stepWeight\":{\"business_personal\":\"11\",\"business_login\":\"11\",\"business_company\":\"11\",\"business_establish\":\"11\",\"business_window\":\"11\",\"business_euser\":\"11\",\"business_handle\":\"11\",\"business_open\":\"11\",\"business_apply\":\"12\"},\"aggrementMapper\":{}},\"configureWidth\":\"250px\",\"scoreWidth\":\"60px\"},\"eventWeight\":10,\"standParseType\":0,\"sort\":0},{\"id\":132,\"eventName\":\"&#x4F01;&#x4E1A;&#x8BBE;&#x7ACB;&#x767B;&#x8BB0;-6-&#x4EBA;&#x5458;&#x4FE1;&#x606F;\",\"eventType\":0,\"eventUrl\":\"https://cjddcloud-test.oss-cn-beijing.aliyuncs.com/cjdd/course/20191022/EE85CEF4-1571728765317.jpg\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3001\",\"eventTemplateUrl\":\"https://dummyedutest.cailian.net/#/businessRegister\",\"eventDesp\":\"zz\",\"roles\":null,\"type\":true,\"modelType\":\"basicPersonnelInfo\",\"dynmaicParamReqList\":[{\"id\":40441,\"questionId\":6540,\"eventId\":132,\"param\":\"platform\",\"value\":\"dummy\",\"type\":1,\"sort\":1},{\"id\":40442,\"questionId\":6540,\"eventId\":132,\"param\":\"templateCode\",\"value\":\"001\",\"type\":1,\"sort\":1},{\"id\":40443,\"questionId\":6540,\"eventId\":132,\"param\":\"roles\",\"value\":\"3001\",\"type\":1,\"sort\":1}],\"eventWeight\":20,\"value\":{\"formName\":\"perInfoForm\",\"directorList\":[{\"directorName\":\"&#x59D3;&#x540D;\",\"directorEnglish\":\"&#x59D3;&#x540D;(&#x82F1;&#x6587;)\",\"directorType\":\"&#x4E2D;&#x534E;&#x4EBA;&#x6C11;&#x5171;&#x548C;&#x56FD;&#x5C45;&#x6C11;&#x8EAB;&#x4EFD;&#x8BC1;\",\"directorIdNum\":\"&#x8BC1;&#x4EF6;&#x53F7;&#x7801;\",\"directorArea\":\"&#x4E2D;&#x56FD;\",\"directorSex\":3,\"directorPhone\":\"&#x8054;&#x7CFB;&#x7535;&#x8BDD;\",\"directorDegree\":\"0\",\"directorNation\":\"&#x6C49;&#x65CF;\",\"directorOutlook\":\"0\",\"directorDate\":\"2021-02-01\",\"directorPost\":\"&#x804C;&#x52A1;\",\"directorStart\":\"2021-02-01\",\"directorEnd\":\"2021-02-01\",\"directorMode\":\"&#x59D4;&#x6D3E;\",\"directorTerm\":\"0\",\"directorAddress1\":\"&#x6237;&#x7C4D;&#x767B;&#x8BB0;\"}],\"managerList\":[],\"supervisorList\":[],\"other1List\":[{\"otherName\":\"&#x59D3;&#x540D;\",\"otherType\":\"&#x4E2D;&#x534E;&#x4EBA;&#x6C11;&#x5171;&#x548C;&#x56FD;&#x5C45;&#x6C11;&#x8EAB;&#x4EFD;&#x8BC1;\",\"otherIdNum\":\"&#x8BC1;&#x4EF6;&#x53F7;&#x7801;\",\"otherPhone\":\"&#x79FB;&#x52A8;&#x7535;&#x8BDD;\",\"otherTel\":\"&#x56FA;&#x5B9A;&#x7535;&#x8BDD;\",\"otherEmail\":\"&#x7535;&#x5B50;&#x90AE;&#x7BB1;\",\"otherStart\":\"2021-02-01\",\"otherEnd\":\"2021-02-03\"}],\"other2List\":[{\"otherName\":\"&#x59D3;&#x540D;\",\"otherType\":\"&#x4E2D;&#x534E;&#x4EBA;&#x6C11;&#x5171;&#x548C;&#x56FD;&#x5C45;&#x6C11;&#x8EAB;&#x4EFD;&#x8BC1;\",\"otherIdNum\":\"&#x8BC1;&#x4EF6;&#x53F7;&#x7801;\",\"otherPhone\":\"&#x79FB;&#x52A8;&#x7535;&#x8BDD;\",\"otherTel\":\"&#x56FA;&#x5B9A;&#x7535;&#x8BDD;\",\"otherEmail\":\"&#x7535;&#x5B50;&#x90AE;&#x7BB1;\",\"otherStart\":\"2021-02-01\",\"otherEnd\":\"2021-02-03\"}],\"other3List\":[{\"otherName\":\"&#x59D3;&#x540D;\",\"otherType\":\"&#x4E2D;&#x534E;&#x4EBA;&#x6C11;&#x5171;&#x548C;&#x56FD;&#x5C45;&#x6C11;&#x8EAB;&#x4EFD;&#x8BC1;\",\"otherIdNum\":\"&#x8BC1;&#x4EF6;&#x53F7;&#x7801;\",\"otherPhone\":\"&#x79FB;&#x52A8;&#x7535;&#x8BDD;\",\"otherTel\":\"&#x56FA;&#x5B9A;&#x7535;&#x8BDD;\",\"otherEmail\":\"&#x7535;&#x5B50;&#x90AE;&#x7BB1;\",\"otherStart\":\"2021-02-01\",\"otherEnd\":\"2021-02-02\"}],\"other4List\":[{\"otherName\":\"&#x59D3;&#x540D;\",\"otherType\":\"&#x4E2D;&#x534E;&#x4EBA;&#x6C11;&#x5171;&#x548C;&#x56FD;&#x5C45;&#x6C11;&#x8EAB;&#x4EFD;&#x8BC1;\",\"otherIdNum\":\"&#x8BC1;&#x4EF6;&#x53F7;&#x7801;\",\"otherPhone\":\"&#x79FB;&#x52A8;&#x7535;&#x8BDD;\",\"otherTel\":\"&#x56FA;&#x5B9A;&#x7535;&#x8BDD;\",\"otherEmail\":\"&#x7535;&#x5B50;&#x90AE;&#x7BB1;\",\"otherStart\":\"2021-02-01\",\"otherEnd\":\"2021-02-02\"}],\"other5List\":[{\"otherName\":\"&#x59D3;&#x540D;\",\"otherType\":\"&#x4E2D;&#x534E;&#x4EBA;&#x6C11;&#x5171;&#x548C;&#x56FD;&#x5C45;&#x6C11;&#x8EAB;&#x4EFD;&#x8BC1;\",\"otherIdNum\":\"&#x8BC1;&#x4EF6;&#x53F7;&#x7801;\",\"otherPhone\":\"&#x79FB;&#x52A8;&#x7535;&#x8BDD;\",\"otherTel\":\"&#x56FA;&#x5B9A;&#x7535;&#x8BDD;\",\"otherEmail\":\"&#x7535;&#x5B50;&#x90AE;&#x7BB1;\",\"otherStart\":\"2021-02-01\",\"otherEnd\":\"2021-02-03\"}],\"other6List\":[{\"otherName\":\"&#x59D3;&#x540D;\",\"otherType\":\"&#x4E2D;&#x534E;&#x4EBA;&#x6C11;&#x5171;&#x548C;&#x56FD;&#x5C45;&#x6C11;&#x8EAB;&#x4EFD;&#x8BC1;\",\"otherIdNum\":\"&#x8BC1;&#x4EF6;&#x53F7;&#x7801;\",\"otherPhone\":\"&#x79FB;&#x52A8;&#x7535;&#x8BDD;\",\"otherTel\":\"&#x56FA;&#x5B9A;&#x7535;&#x8BDD;\",\"otherEmail\":\"&#x7535;&#x5B50;&#x90AE;&#x7BB1;\",\"otherStart\":\"2021-02-01\",\"otherEnd\":\"2021-02-03\"}],\"weightMapper\":{\"directorList\":\"9\",\"managerList\":\"9\",\"supervisorList\":\"9\",\"legalTel\":\"8\",\"legalPhone\":\"8\",\"legalName\":\"8\",\"other1List\":\"8\",\"other2List\":\"8\",\"other3List\":\"8\",\"other4List\":\"8\",\"other5List\":\"8\",\"other6List\":\"9\",\"directorListMapper\":{\"directorName\":\"5\",\"directorEnglish\":\"5\",\"directorType\":\"5\",\"directorIdNum\":\"5\",\"directorArea\":\"5\",\"directorSex\":\"5\",\"directorPhone\":\"6\",\"directorDegree\":\"6\",\"directorNation\":\"6\",\"directorOutlook\":\"6\",\"directorDate\":\"6\",\"directorPost\":\"6\",\"directorStart\":\"6\",\"directorEnd\":\"6\",\"directorMode\":\"6\",\"directorTerm\":\"6\",\"directorAddress1\":\"10\"},\"managerListMapper\":{\"directorName\":\"5\",\"directorEnglish\":\"5\",\"directorType\":\"5\",\"directorIdNum\":\"5\",\"directorArea\":\"5\",\"directorSex\":\"5\",\"directorPhone\":\"6\",\"directorDegree\":\"6\",\"directorNation\":\"6\",\"directorOutlook\":\"6\",\"directorDate\":\"6\",\"directorPost\":\"6\",\"directorStart\":\"6\",\"directorEnd\":\"6\",\"directorMode\":\"6\",\"directorTerm\":\"6\",\"directorAddress1\":\"10\"},\"supervisorListMapper\":{\"directorName\":\"5\",\"directorEnglish\":\"5\",\"directorType\":\"5\",\"directorIdNum\":\"5\",\"directorArea\":\"5\",\"directorSex\":\"5\",\"directorPhone\":\"6\",\"directorDegree\":\"6\",\"directorNation\":\"6\",\"directorOutlook\":\"6\",\"directorDate\":\"6\",\"directorPost\":\"6\",\"directorStart\":\"6\",\"directorEnd\":\"6\",\"directorMode\":\"6\",\"directorTerm\":\"6\",\"directorAddress1\":\"10\"},\"other1ListMapper\":{\"otherName\":\"13\",\"otherType\":\"13\",\"otherIdNum\":\"13\",\"otherPhone\":\"13\",\"otherTel\":\"12\",\"otherEmail\":\"12\",\"otherStart\":\"12\",\"otherEnd\":\"12\"},\"other2ListMapper\":{\"otherName\":\"13\",\"otherType\":\"13\",\"otherIdNum\":\"13\",\"otherPhone\":\"13\",\"otherTel\":\"12\",\"otherEmail\":\"12\",\"otherStart\":\"12\",\"otherEnd\":\"12\"},\"other3ListMapper\":{\"otherName\":\"13\",\"otherType\":\"13\",\"otherIdNum\":\"13\",\"otherPhone\":\"13\",\"otherTel\":\"12\",\"otherEmail\":\"12\",\"otherStart\":\"12\",\"otherEnd\":\"12\"},\"other4ListMapper\":{\"otherName\":\"13\",\"otherType\":\"13\",\"otherIdNum\":\"13\",\"otherPhone\":\"13\",\"otherTel\":\"12\",\"otherEmail\":\"12\",\"otherStart\":\"12\",\"otherEnd\":\"12\"},\"other5ListMapper\":{\"otherName\":\"13\",\"otherType\":\"13\",\"otherIdNum\":\"13\",\"otherPhone\":\"13\",\"otherTel\":\"12\",\"otherEmail\":\"12\",\"otherStart\":\"12\",\"otherEnd\":\"12\"},\"other6ListMapper\":{\"otherName\":\"13\",\"otherType\":\"13\",\"otherIdNum\":\"13\",\"otherPhone\":\"13\",\"otherTel\":\"12\",\"otherEmail\":\"12\",\"otherStart\":\"12\",\"otherEnd\":\"12\"}},\"aggrementMapper\":{\"directorList\":99,\"managerList\":99,\"supervisorList\":99,\"other1List\":97,\"other2List\":97,\"other3List\":97,\"other4List\":97,\"other5List\":97,\"other6List\":97}},\"standParseType\":1,\"sort\":1},{\"id\":133,\"eventName\":\"&#x4F01;&#x4E1A;&#x8BBE;&#x7ACB;&#x767B;&#x8BB0;-4-&#x4F01;&#x4E1A;&#x57FA;&#x672C;&#x4FE1;&#x606F;&#x8868;&#x5355; \",\"eventType\":0,\"eventUrl\":\"https://cjddcloud-test.oss-cn-beijing.aliyuncs.com/cjdd/course/20191022/03F20D18-1571728815150.jpg\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3001\",\"eventTemplateUrl\":\"https://dummyedutest.cailian.net/#/businessRegister\",\"eventDesp\":\"&#x738B;&#x3002;1\",\"roles\":null,\"modelType\":\"formTemplate\",\"modelName\":\"basic_information_enterprise\",\"type\":true,\"dynmaicParamReqList\":[{\"id\":40444,\"questionId\":6540,\"eventId\":133,\"param\":\"platform\",\"value\":\"dummy\",\"type\":1,\"sort\":2},{\"id\":40445,\"questionId\":6540,\"eventId\":133,\"param\":\"templateCode\",\"value\":\"001\",\"type\":1,\"sort\":2},{\"id\":40446,\"questionId\":6540,\"eventId\":133,\"param\":\"roles\",\"value\":\"3001\",\"type\":1,\"sort\":2}],\"value\":{\"name\":\"&#x4F01;&#x4E1A;&#x8BBE;&#x7ACB;&#x767B;&#x8BB0; - &#x4F01;&#x4E1A;&#x57FA;&#x672C;&#x4FE1;&#x606F;&#x8868;&#x5355;\",\"form\":{\"configure\":{\"formName\":\"infoForm\",\"jycs\":\"&#x4F4F;&#x6240;(&#x7ECF;&#x8425;&#x573A;&#x6240;)\",\"scjyd\":\"&#x751F;&#x4EA7;&#x7ECF;&#x8425;&#x5730;\",\"zssyqx\":\"&#x4F4F;&#x6240;&#x4F7F;&#x7528;&#x671F;&#x9650;(&#x5E74;)\",\"yymj\":\"\",\"fwyt\":\"&#x623F;&#x5C4B;&#x7528;&#x9014;\",\"zscqr\":\"&#x4F4F;&#x6240;(&#x4EA7;&#x6743;&#x4EBA;)\",\"zscqlx\":\"&#x6709;&#x623F;&#x4EA7;&#x8BC1;\",\"zstgfs\":\"&#x81EA;&#x6709;\",\"yyqx\":\"3\",\"zzfbs\":\"5\",\"isweizhi\":\"&#x662F;\"},\"weightMapper\":{\"jycs\":\"9\",\"scjyd\":\"9\",\"zssyqx\":\"9\",\"yymj\":\"9\",\"fwyt\":\"9\",\"zscqr\":\"9\",\"zscqlx\":\"9\",\"zstgfs\":\"9\",\"yyqx\":\"9\",\"zzfbs\":\"9\",\"isweizhi\":\"10\"},\"aggrementMapper\":{\"zstgfs\":5,\"isweizhi\":5,\"zscqlx\":5}},\"configureWidth\":\"250px\",\"scoreWidth\":\"60px\"},\"eventWeight\":20,\"standParseType\":0,\"sort\":2},{\"id\":135,\"eventName\":\"&#x4F01;&#x4E1A;&#x8BBE;&#x7ACB;&#x767B;&#x8BB0;-7-&#x7A0E;&#x52A1;&#x4FE1;&#x606F;&#x786E;&#x8BA4;\",\"eventType\":0,\"eventUrl\":\"https://cjddcloud-test.oss-cn-beijing.aliyuncs.com/cjdd/course/20191022/E7D339D7-1571728965500.jpg\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3001\",\"eventTemplateUrl\":\"https://dummyedutest.cailian.net/#/businessRegister\",\"eventDesp\":\"&#x738B;&#x3002;\",\"roles\":null,\"modelType\":\"formTemplate\",\"modelName\":\"tax_information_confirmation\",\"type\":true,\"dynmaicParamReqList\":[{\"id\":40447,\"questionId\":6540,\"eventId\":135,\"param\":\"platform\",\"value\":\"dummy\",\"type\":1,\"sort\":3},{\"id\":40448,\"questionId\":6540,\"eventId\":135,\"param\":\"templateCode\",\"value\":\"001\",\"type\":1,\"sort\":3},{\"id\":40449,\"questionId\":6540,\"eventId\":135,\"param\":\"roles\",\"value\":\"3001\",\"type\":1,\"sort\":3}],\"value\":{\"name\":\"&#x4F01;&#x4E1A;&#x8BBE;&#x7ACB;&#x767B;&#x8BB0; - &#x7A0E;&#x52A1;&#x4FE1;&#x606F;&#x786E;&#x8BA4;\",\"form\":{\"configure\":{\"formName\":\"taxationInfoForm\",\"taxName\":\"&#x59D3;&#x540D;\",\"taxEmail\":\"&#x7535;&#x5B50;&#x90AE;&#x7BB1;\",\"taxType\":\"&#x8BC1;&#x4EF6;&#x7C7B;&#x578B;\",\"taxIdNum\":\"&#x8BC1;&#x4EF6;&#x53F7;&#x7801;\",\"taxTel\":\"&#x79FB;&#x52A8;&#x53F7;&#x7801;\",\"project1\":\"&#x9879;&#x76EE;&#x7C7B;&#x522B;\",\"project2\":\"&#x7ECF;&#x8425;&#x5927;&#x7C7B;\",\"project3\":\"&#x7ECF;&#x8425;&#x660E;&#x7EC6;\",\"project4\":\"&#x884C;&#x4E1A;&#x540D;&#x79F0;\",\"project5\":\"&#x9884;&#x8BA1;&#x7ECF;&#x8425;&#x5360;&#x6BD4;\"},\"weightMapper\":{\"taxName\":\"10\",\"taxEmail\":\"10\",\"taxType\":\"10\",\"taxIdNum\":\"10\",\"taxTel\":\"10\",\"project1\":\"10\",\"project2\":\"10\",\"project3\":\"10\",\"project4\":\"10\",\"project5\":\"10\"},\"aggrementMapper\":{}},\"configureWidth\":\"250px\",\"scoreWidth\":\"60px\"},\"eventWeight\":20,\"standParseType\":0,\"sort\":3},{\"id\":184,\"eventName\":\"&#x4F01;&#x4E1A;&#x8BBE;&#x7ACB;&#x767B;&#x8BB0;-3-&#x81EA;&#x7136;&#x4EBA;&#x80A1;&#x4E1C;&#x4FE1;&#x606F;\",\"eventType\":0,\"eventUrl\":\"https://cjddcloud-test.oss-cn-beijing.aliyuncs.com/cjdd/course/20191112/D5611119-1573543192430.jpg\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3001\",\"eventTemplateUrl\":\"https://dummyedutest.cailian.net/#/businessRegister\",\"eventDesp\":\"zz\",\"roles\":null,\"type\":true,\"modelType\":\"naturalPerson\",\"dynmaicParamReqList\":[{\"id\":40450,\"questionId\":6540,\"eventId\":184,\"param\":\"platform\",\"value\":\"dummy\",\"type\":1,\"sort\":4},{\"id\":40451,\"questionId\":6540,\"eventId\":184,\"param\":\"templateCode\",\"value\":\"001\",\"type\":1,\"sort\":4},{\"id\":40452,\"questionId\":6540,\"eventId\":184,\"param\":\"roles\",\"value\":\"3001\",\"type\":1,\"sort\":4}],\"eventWeight\":20,\"value\":{\"formName\":\"shareholderForm\",\"natural\":[{\"ruleName\":\"&#x59D3;&#x540D;\",\"ruleType\":\"&#x8EAB;&#x4EFD;&#x8BC1;&#x53F7;&#x7801;\",\"ruleNation\":\"&#x6C49;&#x65CF;\",\"ruleInvestor\":\"&#x81EA;&#x7136;&#x4EBA;&#x80A1;&#x4E1C;\",\"city\":\"&#x5317;&#x4EAC;&#x5E02;\",\"area\":\"&#x6237;&#x7C4D;&#x767B;&#x8BB0;&#x5730;\",\"detail\":\"&#x6237;&#x7C4D;&#x767B;&#x8BB0;&#x5730;\",\"date1\":\"2021-02-01\",\"date2\":\"2021-02-02\",\"tableData\":[{\"cze\":\"1\",\"czfs\":\"0\",\"czrq\":\"2021-02-01\"}],\"totalCze\":1}],\"notNatural\":[{\"ruleName\":\"&#x5355;&#x4F4D;&#x540D;&#x79F0;\",\"ruleType\":\"&#x6CD5;&#x4EBA;&#x80A1;&#x4E1C;\",\"ruleLicence\":\"&#x4F01;&#x4E1A;&#x6CD5;&#x4EBA;&#x8425;&#x4E1A;&#x6267;&#x7167;\",\"ruleLicenceNum\":\"&#x8BC1;&#x4EF6;&#x53F7;&#x7801;\",\"ruleLegal\":\"&#x6CD5;&#x5B9A;&#x4EE3;&#x8868;&#x4EBA;\",\"ruleLegalType\":\"&#x4E2D;&#x534E;&#x4EBA;&#x6C11;&#x5171;&#x548C;&#x56FD;&#x5C45;&#x6C11;&#x8EAB;&#x4EFD;&#x8BC1;\",\"city\":\"&#x5317;&#x4EAC;&#x5E02;\",\"area\":\"&#x4F4F;&#x6240;\",\"detail\":\"&#x4F4F;&#x6240;\",\"tableData\":[{\"cze\":\"1\",\"czfs\":\"0\",\"czrq\":\"2021-02-01\"}],\"totalCze\":1,\"date1\":\"2021-02-01\",\"date2\":\"2021-02-03\",\"ruleArea\":\"&#x4E2D;&#x56FD;\"}],\"weightMapper\":{\"natural\":\"50\",\"notNatural\":\"50\",\"naturalMapper\":{\"ruleName\":\"10\",\"ruleType\":\"10\",\"ruleNation\":\"10\",\"ruleInvestor\":\"10\",\"city\":\"4\",\"area\":\"3\",\"detail\":\"3\",\"date1\":\"10\",\"date2\":\"10\",\"totalCze\":\"30\"},\"notNaturalMapper\":{\"ruleName\":\"8\",\"ruleType\":\"8\",\"ruleLicence\":\"8\",\"ruleLicenceNum\":\"8\",\"ruleLegal\":\"8\",\"ruleLegalType\":\"8\",\"city\":\"3\",\"area\":\"3\",\"detail\":\"2\",\"totalCze\":\"20\",\"date1\":\"8\",\"date2\":\"8\",\"ruleArea\":\"8\"}},\"aggrementMapper\":{\"natural\":99,\"notNatural\":99}},\"standParseType\":1,\"sort\":4},{\"id\":185,\"eventName\":\"&#x4F01;&#x4E1A;&#x8BBE;&#x7ACB;&#x767B;&#x8BB0;-2-&#x4F01;&#x4E1A;&#x8D77;&#x540D;\",\"eventType\":0,\"eventUrl\":\"https://cjddcloud-test.oss-cn-beijing.aliyuncs.com/cjdd/course/20191114/F4517E0E-1573698043313.jpg\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3001\",\"eventTemplateUrl\":\"https://dummyedutest.cailian.net/#/businessRegister\",\"eventDesp\":\"&#x738B;&#x3002;\",\"roles\":null,\"modelType\":\"formTemplate\",\"modelName\":\"shareholder_naming\",\"type\":true,\"dynmaicParamReqList\":[{\"id\":40453,\"questionId\":6540,\"eventId\":185,\"param\":\"platform\",\"value\":\"dummy\",\"type\":1,\"sort\":5},{\"id\":40454,\"questionId\":6540,\"eventId\":185,\"param\":\"templateCode\",\"value\":\"001\",\"type\":1,\"sort\":5},{\"id\":40455,\"questionId\":6540,\"eventId\":185,\"param\":\"roles\",\"value\":\"3001\",\"type\":1,\"sort\":5}],\"value\":{\"name\":\"&#x4F01;&#x4E1A;&#x8BBE;&#x7ACB;&#x767B;&#x8BB0; - &#x516C;&#x53F8;&#x8D77;&#x540D;\",\"form\":{\"configure\":{\"formName\":\"setNameForm\",\"zihao\":\"&#x5B57;&#x53F7;\",\"hytd\":\"&#x5546;&#x8D38;(&#x4E3B;&#x8425;&#x4E1A;&#x52A1;&#xFF1A;&#x6797;&#x4E1A;&#x4EA7;&#x54C1;&#x6279;&#x53D1;)\",\"zzxs\":\"&#x6709;&#x9650;&#x516C;&#x53F8;\",\"scztszd\":\"&#x897F;&#x57CE;&#x533A;\"},\"step\":{},\"weightMapper\":{\"zihao\":\"25\",\"hytd\":\"25\",\"zzxs\":\"25\",\"scztszd\":\"25\"},\"stepWeight\":{},\"aggrementMapper\":{\"mainBusiness\":5}},\"configureWidth\":\"250px\",\"scoreWidth\":\"60px\"},\"eventWeight\":5,\"standParseType\":0,\"sort\":5},{\"id\":190,\"eventName\":\"&#x4F01;&#x4E1A;&#x8BBE;&#x7ACB;&#x767B;&#x8BB0;-5-&#x7ECF;&#x8425;&#x8303;&#x56F4;\",\"eventType\":0,\"eventUrl\":\"https://cjddcloud-test.oss-cn-beijing.aliyuncs.com/cjdd/course/20191118/B93E9822-1574058471627.jpg\",\"eventParam\":\"platform=dummy&templateCode=001&roles=3001\",\"eventTemplateUrl\":\"https://dummyedutest.cailian.net/#/businessRegister\",\"eventDesp\":\"&#x738B;&#x3002;\",\"roles\":null,\"type\":true,\"modelType\":\"businessScope\",\"dynmaicParamReqList\":[{\"id\":40456,\"questionId\":6540,\"eventId\":190,\"param\":\"platform\",\"value\":\"dummy\",\"type\":1,\"sort\":6},{\"id\":40457,\"questionId\":6540,\"eventId\":190,\"param\":\"templateCode\",\"value\":\"001\",\"type\":1,\"sort\":6},{\"id\":40458,\"questionId\":6540,\"eventId\":190,\"param\":\"roles\",\"value\":\"3001\",\"type\":1,\"sort\":6}],\"eventWeight\":5,\"value\":{\"formName\":\"busiScopeForm\",\"checkList\":[\"0\"],\"businessScope\":\"\",\"weightMapper\":{\"checkList\":\"80\",\"businessScope\":\"20\"},\"aggrementMapper\":{\"checkList\":98}},\"standParseType\":1,\"sort\":6}]";
 //        formNameMap = fetchData(str2);
-
-
 
 
         formNameMap1 = fetchMapData(str2);
@@ -540,7 +608,7 @@ public class ExamTest extends BaseDriver {
             //把数组强转成json对象
             JsonObject value = (JsonObject) jo.get("value");
 
-            if ( value.get("form")!=null ){
+            if (value.get("form") != null) {
                 value = (JsonObject) value.get("form");
                 value = (JsonObject) value.get("configure");
             }
