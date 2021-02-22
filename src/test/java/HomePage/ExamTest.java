@@ -108,7 +108,8 @@ public class ExamTest extends BaseDriver {
         WebDriverWait wait = new WebDriverWait(driver, 3);
         WebElement element;
         List<WebElement> elements1;
-
+        JavascriptExecutor js1 = null;
+/*   --------------------------------------------------------------------------------->
         //点击票据采集菜单
         examHandle.clickPJCJ();
         try {
@@ -116,7 +117,7 @@ public class ExamTest extends BaseDriver {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        JavascriptExecutor js1 = (JavascriptExecutor) driver;
+       js1 = (JavascriptExecutor) driver;
         js1.executeScript("return document.getElementsByClassName('el-button el-button--primary el-button--mini is-plain')[0].click();");
 
         try {
@@ -141,8 +142,8 @@ public class ExamTest extends BaseDriver {
         //点击进项发票项--调整发票类型为其他票据
 
 
-       /* //点击其他票据
-        js1.executeScript("return document.getElementsByClassName('invoice-type-tab')[0].getElementsByClassName('classify-item actives')[0].click();");*/
+       *//* //点击其他票据
+        js1.executeScript("return document.getElementsByClassName('invoice-type-tab')[0].getElementsByClassName('classify-item actives')[0].click();");*//*
         //点击进项发票
         element = driver.findElement(By.xpath("//span[text()='进项发票']"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
@@ -186,7 +187,7 @@ public class ExamTest extends BaseDriver {
         element = driver.findElement(By.xpath("//span[text()='中国工商银行回单']"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         //6.---复用
-            //2.点击调整发票类型按钮
+        //2.点击调整发票类型按钮
         //2.点击调整发票类型按钮
         element = driver.findElement(By.xpath("//button/span[text()='调整发票类型']"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
@@ -234,9 +235,49 @@ public class ExamTest extends BaseDriver {
         //8.循环当前票据，并每个票据进行点击操作
         //获取多个票据
         elements1 = driver.findElements(By.cssSelector(".img.undefined"));
-        System.out.println("img undefined 的size："+elements1.size());
+        System.out.println("img undefined 的size：" + elements1.size());
         for (int i = 0; i < elements1.size(); i++) {
             elements1.get(i).click();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            element = driver.findElement(By.xpath("//span[text()='审核']"));
+            wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+            element = driver.findElement(By.cssSelector(".el-button.el-button--default.el-button--small.el-button--primary"));
+            wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        //点击行程单
+        js1.executeScript("return document.getElementsByClassName('title')[4].click();");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        elements1 = driver.findElements(By.cssSelector(".img.undefined"));
+        System.out.println("img undefined 的size：" + elements1.size());
+        for (int i = 0; i < elements1.size(); i++) {
+            elements1.get(i).click();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (i == 0) {
+                js1.executeScript("return document.getElementsByClassName('el-input__inner')[6].value=1040;");
+
+            }else {
+                js1.executeScript("return document.getElementsByClassName('el-input__inner')[6].value=1250;");
+            }
+            element = driver.findElement(By.xpath("//span[text()='保存']"));
+            wait.until(ExpectedConditions.elementToBeClickable(element)).click();
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -253,6 +294,7 @@ public class ExamTest extends BaseDriver {
             }
         }
 
+
         //点击票据制单菜单
         element = driver.findElement(By.cssSelector(".tab-text.active"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
@@ -261,13 +303,83 @@ public class ExamTest extends BaseDriver {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        --------------------------------------------------------->
+        */
 
-        //调整进项发票类型至其他票据
-        element = driver.findElement(By.cssSelector("[class='el-input el-input--mini el-input--suffix']>input"));
+        //费用报销单菜单
+        element = driver.findElement(By.xpath("//span[text()='费用报销单']"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //选择费用类型
+        element = driver.findElement(By.cssSelector(".content-container .charge-expend .el-table__body .el-table__row .el-table_1_column_5 .cell"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //move到请选择列上
+        element = driver.findElement(By.cssSelector("[class='el-select-dropdown el-popper'] [class='el-select-dropdown__wrap el-scrollbar__wrap']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
 
+        //点击国内航空铁路旅客运输服务--项
+        element = driver.findElement(By.xpath("//span[text()='国内航空铁路旅客运输服务']"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //点击发票类型的列表，展示列表
+        element = driver.findElement(By.cssSelector(".content-container .charge-expend .el-table__body .el-table__row .el-table_1_column_10 .cell"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //move到请选择列上
+        element = driver.findElement(By.cssSelector("[class='el-select-dropdown el-popper'] [class='el-select-dropdown__wrap el-scrollbar__wrap']"));
+        actions.moveToElement(element).perform();
+        //点击行程单
+        element = driver.findElement(By.xpath("//span[text()='行程单']"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        //点击附件下的upload按钮
+        element = driver.findElement(By.cssSelector(".accessory .upload"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
+        //定位行程单
+        element = driver.findElement(By.cssSelector(".item-img.active-img .img"));
+        //并双击
+        actions.doubleClick(element).perform();
+        //点击保存
+        element = driver.findElement(By.cssSelector(".el-button.all-button-border-color.all-button-small.save.el-button--default.el-button--mini"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
+        //添加第二条差旅费
+        //点击+号
+        element = driver.findElement(By.cssSelector("el-icon-circle-plus-outline"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
 
