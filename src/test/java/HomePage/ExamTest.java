@@ -146,7 +146,11 @@ public class ExamTest extends BaseDriver {
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         waitTime(5000);
 
-        //点击保存
+        Actions actions = new Actions(driver);
+        actions.moveByOffset(300,300).build().perform();
+        actions.sendKeys("222222222222222222222222222222").build().perform();
+
+     /*   //点击保存
         element = driver.findElement(By.xpath("//span[text()='保存']"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         //点击审核
@@ -158,7 +162,7 @@ public class ExamTest extends BaseDriver {
 
         System.out.println("完成！");
         driver.navigate().refresh();
-        waitTime(2000);
+        waitTime(2000);*/
 
     }
 
