@@ -6,7 +6,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import handle.ExamHandle;
-import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
+
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -66,10 +65,76 @@ public class ExamTest extends BaseDriver {
 //        registrationPerson(formNameMap1, "personRegistrationForm");
         //采集
 //        trainTicketForm(formNameMap, "trainTicketForm");
-//       1226考（100分）上册 16题  领购发票、增加商品服务档案和客户信息、三金室内设计公司代开含税增值税纸质普通发票。
-        customerMsgForm(formNameMap, "customerMsgForm");
+        //1226考（100分）上册 16题  领购发票、增加商品服务档案和客户信息、三金室内设计公司代开含税增值税纸质普通发票。
+//        customerMsgForm(formNameMap, "customerMsgForm");
         //1226考（100分）上册 17题
-        airplainTravelForm(formNameMap, "airplainTravelForm");
+//        airplainTravelForm(formNameMap, "airplainTravelForm");
+        //1226考（100分）上册 18题
+        enterpriseTaxSeasonApplyForm(formNameMap, "enterpriseTaxSeasonApplyForm");
+
+
+    }
+
+    //等待时间
+    public void waitTime(long wait){
+        try {
+            Thread.sleep(wait);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 1226考 上册 第二题实操题，18
+     * 北京紫霖财税共享服务中心（简称“财税共享中心”）是一家为企业提供财税咨询和代理服务的专业公司，2020年8月20日与北京亨泰商贸有限责任
+     * 公司签订了代理记账合同，财税共享中心报税员李自健负责为该公司进行纳税申报工作。
+     * 北京亨泰商贸有限责任公司是一家从事厨房锅具销售的商贸公司，为增值税一般纳税人，企业所得税申报采用查账征收方式。2020年第三季度，季
+     * 初、季末从业人数均为6人，季初资产总额为58.4万元，季末资产总额为70.91万元。
+     * 财税共享中心将签收的北京亨泰商贸有限责任公司2020年9月份的所有票据，进行了采集、整理与查验，并已生成了记账凭证、账簿和会计报表，
+     * 且审核无误。
+     * <p>
+     * 要求：请以报税员李自健身份，对已生成的2020年第三季度企业所得税纳税申报表，进行完善、审核及申报。
+     */
+    public void enterpriseTaxSeasonApplyForm(HashMap<String, List> formNameMap, String enterpriseTaxSeasonApplyForm) {
+        String str2 = "[{\"id\":252,\"eventName\":\"金税师- 企业所得税月（季）度预缴纳税申报表（A类）\",\"eventType\":1,\"eventUrl\":\"https://zledu-oss-sx.cailian.net/cjdd/course/20191219/B30C5F53-1576768794322.png\",\"eventParam\":\"platform=jss&templateCode={001}&roles={001}\",\"eventTemplateUrl\":\"/#/jss/home\",\"eventTemplatePic\":\"modelType=v_excel2\",\"eventDesp\":\"东东配一下传递参数，看看地址\",\"roles\":null,\"type\":true,\"modelType\":\"v_excel2\",\"dynmaicParamReqList\":[{\"id\":99931,\"questionId\":9429,\"eventId\":252,\"param\":\"platform\",\"value\":\"jss\",\"type\":1,\"sort\":0},{\"id\":99932,\"questionId\":9429,\"eventId\":252,\"param\":\"templateCode\",\"value\":\"3053\",\"type\":1,\"sort\":0},{\"id\":99933,\"questionId\":9429,\"eventId\":252,\"param\":\"roles\",\"value\":\"3006\",\"type\":1,\"sort\":0}],\"eventWeight\":50,\"value\":{\"formName\":\"enterpriseTaxSeasonApplyForm\",\"excelName\":[\"中华人民共和国企业所得税月（季）度预缴纳税申报表（A类）\",\"1\"],\"weightMapper\":{\"enterpriseTaxSeasonApplyForm\":\"100\"},\"38dcc64577b627bb6769cf91af1f67f4\":\"243120\",\"de528dfdbfd4d262b6b664fbc4b30c2d\":\"159500\",\"f0f5d4d31a601f10b3c280cc90db8a18\":\"32511.05\",\"e6db92b81b29bff64060afe69c967aad\":\"32511.05\",\"eaca06940701d4451afbf8569ce9b140\":\"8127.76\",\"a593b10c4e508fa88516a9d532634657\":\"1625.55\",\"0fb5b3a10258c738dff0a058ce997655\":\"6\",\"3dfb09a3006dcffbbb4a3e7fb21d8235\":\"6\",\"45893e483b7a6f43ca58bda94da9f078\":\"58.4\",\"a5b35dc8325236d5ba776bcaccbab189\":\"70.91\",\"e1e4f49c0db5ed289bcc7279afd2746a\":\"91117546201540482A\",\"52eb39070e49f15d6d15a29a3256cf53\":\"北京亨泰商贸有限责任公司\",\"a55d052d65e19c6919440109b2140397\":\"6502.21\"},\"standParseType\":2,\"sort\":0},{\"id\":253,\"eventName\":\"点击金税师“纳税申报”按钮\",\"eventType\":1,\"eventUrl\":\"https://zledu-oss-sx.cailian.net/cjdd/course/20191219/8DEE907E-1576769088942.png\",\"eventParam\":\"platform=jss&templateCode={001}&roles={001} \",\"eventTemplateUrl\":\"/#/jss/home\",\"eventTemplatePic\":\"modelType=uploadImgToEvent\",\"eventDesp\":\"\\n\\n\\nmodelType=uploadImgToEvent\\n\",\"roles\":null,\"type\":true,\"modelType\":\"uploadImgToEvent\",\"dynmaicParamReqList\":[{\"id\":99934,\"questionId\":9429,\"eventId\":253,\"param\":\"platform\",\"value\":\"jss\",\"type\":1,\"sort\":1},{\"id\":99935,\"questionId\":9429,\"eventId\":253,\"param\":\"templateCode\",\"value\":\"3053\",\"type\":1,\"sort\":1},{\"id\":99936,\"questionId\":9429,\"eventId\":253,\"param\":\"roles\",\"value\":\"3006\",\"type\":1,\"sort\":1}],\"eventWeight\":50,\"timestamp\":1604043225415,\"value\":{\"formName\":\"addValueApplyForm\",\"click\":\"1\",\"imgUrl\":\"https://zledu-oss-sx.cailian.net/cjdd/course/20200602/0C70A70E-1591062783018.jpg\",\"weightMapper\":{\"click\":\"100\"}},\"standParseType\":1,\"sort\":1}]";
+        formNameMap = fetchData(str2);
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        WebElement element;
+        List<WebElement> elements1;
+        JavascriptExecutor js1 = null;
+        removeAlert();
+
+        //输入题目编号
+        List<WebElement> elements = driver.findElements(By.cssSelector(".topic_num"));
+        int size = elements.size();
+        System.out.println(size + "size。。。。。。。。。。");
+        elements.get(17).click();
+
+        //点击开始答题按钮
+        examHandle.startAnsweringButton();
+        WebElement iframeName = driver.findElement(By.name("ifinc"));
+        driver.switchTo().frame(iframeName);
+        waitTime(3000);
+        //点击纳税工作台
+        element = driver.findElement(By.cssSelector(".icon.el-icon-data-board~span"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        waitTime(1000);
+        element = driver.findElement(By.xpath("//input[@type='F']"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys("2020-10");
+        wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys(Keys.ENTER);
+
+
+
+
+
+        Actions actions = new Actions(driver);
+        WebElement canvas = driver.findElement(By.id("mySpreadSheetvp_vp"));
+        actions.moveToElement(canvas,canvas.getLocation().getX(),canvas.getLocation().getY()).click().build().perform();
+
+
+
+
+
 
     }
 
@@ -567,7 +632,6 @@ public class ExamTest extends BaseDriver {
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
-
     /**
      * 1226考（100分）上册 16题
      * 北京紫霖财税共享服务中心（简称“财税共享中心”）是一家为企业提供财税咨询和代理服务的专业公司，2019年11月20日与宁波三金室内设计有限公司（简称“三金室内设计公司”）签订了代理记账合同。
@@ -604,7 +668,7 @@ public class ExamTest extends BaseDriver {
         WebDriverWait wait = new WebDriverWait(driver, 3);
         WebElement element;
         //点击发票领购菜单
-        /*wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div~ul>li>i[class=\"el-icon-search\"]")))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div~ul>li>i[class=\"el-icon-search\"]")))).click();
         System.out.println("step1点击发票领购菜单成功！");
 //        点击发票类型弹出下拉框
         element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/form/div[2]/div/div/div/input"));
@@ -670,7 +734,7 @@ public class ExamTest extends BaseDriver {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
+        }
 
 //        点击商品服务档案菜单
         WebElement element3 = driver.findElement(By.cssSelector(".el-icon-box"));
@@ -783,7 +847,6 @@ public class ExamTest extends BaseDriver {
         wait.until(ExpectedConditions.elementToBeClickable(elements10.get(0))).click();
 
         element = driver.findElement(By.cssSelector(".buy-name-dialog .el-dialog__wrapper .el-dialog__body"));
-        Actions actions = new Actions(driver);
         actions.moveToElement(element).perform();
 
         try {
@@ -809,16 +872,20 @@ public class ExamTest extends BaseDriver {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div/div[5]/div/div/div[2]/div/div[2]/div[2]/div/div[3]/table/tbody/tr[2]/td[2]/div"));
+        element = driver.findElement(By.xpath("//div[text()='设计服务']"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         //输入数量
         element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div/div[3]/div/div/div[2]/div/div[3]/table/tbody/tr/td[5]/div/div/input"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys("2");
         System.out.println("输入数量成功");
         //点击暂存
-        element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div/div[1]/button[1]"));
+//        element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div/div[1]/button[1]"));
+//        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+//        System.out.println("点击暂存成功！");
+
+        element = driver.findElement(By.xpath("//button//span[text()='发票开具']"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
-        System.out.println("点击暂存成功！");
+        System.out.println("发票开具成功！");
 
         //刷新页面，回到答题首页
         driver.navigate().refresh();
