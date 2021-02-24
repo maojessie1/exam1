@@ -12,6 +12,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.openqa.selenium.interactions.Actions;
+
 
 
 import java.util.*;
@@ -76,12 +78,28 @@ public class ExamTest extends BaseDriver {
     }
 
     //等待时间
-    public void waitTime(long wait){
+    public void waitTime(long wait) {
         try {
             Thread.sleep(wait);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 交卷动作
+     */
+
+    public void papers(){
+        WebDriverWait wait = new WebDriverWait(driver,5000);
+        WebElement element = driver.findElement(By.xpath("//span[text()='交卷']"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        element = driver.findElement(By.xpath("//div[text()='确认交卷']"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        element = driver.findElement(By.xpath("//div[text()='确认交卷']"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+
+
     }
 
     /**
@@ -101,7 +119,7 @@ public class ExamTest extends BaseDriver {
         WebDriverWait wait = new WebDriverWait(driver, 3);
         WebElement element;
         List<WebElement> elements1;
-        JavascriptExecutor js1 = null;
+        JavascriptExecutor js = null;
         removeAlert();
 
         //输入题目编号
@@ -119,22 +137,28 @@ public class ExamTest extends BaseDriver {
         element = driver.findElement(By.cssSelector(".icon.el-icon-data-board~span"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         waitTime(1000);
-        element = driver.findElement(By.xpath("//input[@type='F']"));
+        element = driver.findElement(By.cssSelector(".jssHomeHead .el-input__inner"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).clear();
         wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys("2020-10");
         wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys(Keys.ENTER);
+        //选择中华人民共和国企业所得税月（季）度预缴纳税申报表（A类）报表
+        element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div/div[2]/div[3]/table/tbody/tr[1]/td[5]/div/span"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        waitTime(5000);
 
+        //点击保存
+        element = driver.findElement(By.xpath("//span[text()='保存']"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        //点击审核
+        element = driver.findElement(By.xpath("//span[text()='审核']"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        //点击申报
+        element = driver.findElement(By.xpath("//span[text()='申报']"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
 
-
-
-
-        Actions actions = new Actions(driver);
-        WebElement canvas = driver.findElement(By.id("mySpreadSheetvp_vp"));
-        actions.moveToElement(canvas,canvas.getLocation().getX(),canvas.getLocation().getY()).click().build().perform();
-
-
-
-
-
+        System.out.println("完成！");
+        driver.navigate().refresh();
+        waitTime(2000);
 
     }
 
