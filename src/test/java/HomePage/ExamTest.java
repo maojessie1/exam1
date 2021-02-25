@@ -12,7 +12,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.openqa.selenium.interactions.Actions;
 
 
 
@@ -126,6 +125,7 @@ public class ExamTest extends BaseDriver {
         List<WebElement> elements = driver.findElements(By.cssSelector(".topic_num"));
         int size = elements.size();
         System.out.println(size + "size。。。。。。。。。。");
+        waitTime(3000);
         elements.get(17).click();
 
         //点击开始答题按钮
@@ -141,39 +141,35 @@ public class ExamTest extends BaseDriver {
         wait.until(ExpectedConditions.elementToBeClickable(element)).clear();
         wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys("2020-10");
         wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys(Keys.ENTER);
+        waitTime(3000);
         //选择中华人民共和国企业所得税月（季）度预缴纳税申报表（A类）报表
         element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div/div[2]/div[3]/table/tbody/tr[1]/td[5]/div/span"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
-
-        Actions actions = new Actions(driver);
+        waitTime(6000);
         element = driver.findElement(By.className("my_iframe"));
         driver.switchTo().frame(element);
         waitTime(3000);
-        //element.getLocation() = (1227, 23)
-        element = driver.findElement(By.xpath("//*[@id=\"mySpreadSheet\"]/table/tr[1]/td[2]/div/div/div[2]/div"));
-//        System.out.println("11111element.getLocation() = " + element.getLocation());
-        actions.moveToElement(element).perform();
-        waitTime(2000);
-        actions.dragAndDropBy(element,1227,40).perform();
+        element = driver.findElement(By.xpath("//span[@class='gc-scroll-arrowDown ui-icon ui-icon-triangle-1-s']/.."));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
 
-//        String js1 ="window.scrollTo(0,800)";;
-//        js.executeScript(js1);
-//        actions.contextClick();
         //K20
-/*        actions.moveByOffset(1003, 630).build().perform();
+        Actions actions = new Actions(driver);
+        actions.moveByOffset(1003, 517).perform();
         actions.doubleClick().perform();
+
         actions.sendKeys("6502.21").build().perform();
+        actions.doubleClick().perform();
+        actions.sendKeys(Keys.ENTER);
         waitTime(3000);
         //k35 季末从业人数
-        actions.moveByOffset(1003, 666).build().perform();
+        actions.moveByOffset(1003, 517).perform();
         actions.doubleClick().perform();
-        actions.sendKeys("6").build().perform();*/
+        actions.sendKeys("6").build().perform();
 
-        actions.moveByOffset(1003, 665).build().perform();
+        actions.moveByOffset(1003, 520).build().perform();
         waitTime(5000);
         actions.doubleClick().perform();
         actions.sendKeys("70.91").build().perform();
-
 
 
      /*   //点击保存
@@ -229,7 +225,6 @@ public class ExamTest extends BaseDriver {
         WebElement element;
         List<WebElement> elements1;
         JavascriptExecutor js1 = null;
-
         //点击票据采集菜单
         examHandle.clickPJCJ();
         try {
@@ -1212,13 +1207,9 @@ public class ExamTest extends BaseDriver {
     //去除考试过程中作弊弹框
     private void removeAlert() {
         Actions actions = new Actions(driver);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         actions.sendKeys(Keys.F12).perform();
-        String js = "document.getElementById(\"dialog\").remove();";
+        waitTime(1000);
+        String js = "document.getElementById('dialog').remove();";
         ((JavascriptExecutor) driver).executeScript(js);
 
     }
