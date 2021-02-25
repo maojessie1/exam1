@@ -144,11 +144,37 @@ public class ExamTest extends BaseDriver {
         //选择中华人民共和国企业所得税月（季）度预缴纳税申报表（A类）报表
         element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div/div[2]/div[3]/table/tbody/tr[1]/td[5]/div/span"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
-        waitTime(5000);
 
         Actions actions = new Actions(driver);
-        actions.moveByOffset(300,300).build().perform();
-        actions.sendKeys("222222222222222222222222222222").build().perform();
+        element = driver.findElement(By.className("my_iframe"));
+        driver.switchTo().frame(element);
+        waitTime(3000);
+        //element.getLocation() = (1227, 23)
+        element = driver.findElement(By.xpath("//*[@id=\"mySpreadSheet\"]/table/tr[1]/td[2]/div/div/div[2]/div"));
+//        System.out.println("11111element.getLocation() = " + element.getLocation());
+        actions.moveToElement(element).perform();
+        waitTime(2000);
+        actions.dragAndDropBy(element,1227,40).perform();
+
+//        String js1 ="window.scrollTo(0,800)";;
+//        js.executeScript(js1);
+//        actions.contextClick();
+        //K20
+/*        actions.moveByOffset(1003, 630).build().perform();
+        actions.doubleClick().perform();
+        actions.sendKeys("6502.21").build().perform();
+        waitTime(3000);
+        //k35 季末从业人数
+        actions.moveByOffset(1003, 666).build().perform();
+        actions.doubleClick().perform();
+        actions.sendKeys("6").build().perform();*/
+
+        actions.moveByOffset(1003, 665).build().perform();
+        waitTime(5000);
+        actions.doubleClick().perform();
+        actions.sendKeys("70.91").build().perform();
+
+
 
      /*   //点击保存
         element = driver.findElement(By.xpath("//span[text()='保存']"));
