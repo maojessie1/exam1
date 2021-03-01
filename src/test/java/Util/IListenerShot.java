@@ -1,7 +1,7 @@
 package Util;
 
 import com.google.common.io.Files;
-import HomePage.ExamTest;
+import HomePage.ExamTestApp;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -19,7 +19,7 @@ public class IListenerShot extends TestListenerAdapter {
 
     @Override
     public void onTestSuccess(ITestResult tr) {
-        ExamTest instance = (ExamTest) tr.getInstance();
+        ExamTestApp instance = (ExamTestApp) tr.getInstance();
         WebDriver driver = instance.driver;
         getScreen(driver);
         super.onTestSuccess(tr);
@@ -28,7 +28,7 @@ public class IListenerShot extends TestListenerAdapter {
 
     @Override
     public void onTestFailure(ITestResult tr) {
-        ExamTest instance = (ExamTest) tr.getInstance();
+        ExamTestApp instance = (ExamTestApp) tr.getInstance();
         WebDriver driver = instance.driver;
         getScreen(driver);
         super.onTestFailure(tr);

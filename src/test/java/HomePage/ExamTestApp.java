@@ -14,12 +14,11 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
-
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
-public class ExamTest extends BaseDriver {
+public class ExamTestApp extends BaseDriver {
     public WebDriver driver;
     ExamHandle examHandle;
     HashMap<String, Map> formNameMap1 = null;
@@ -72,8 +71,6 @@ public class ExamTest extends BaseDriver {
 //        airplainTravelForm(formNameMap, "airplainTravelForm");
         //1226考（100分）上册 18题
         enterpriseTaxSeasonApplyForm(formNameMap, "enterpriseTaxSeasonApplyForm");
-
-
     }
 
     //等待时间
@@ -89,8 +86,8 @@ public class ExamTest extends BaseDriver {
      * 交卷动作
      */
 
-    public void papers(){
-        WebDriverWait wait = new WebDriverWait(driver,5000);
+    public void papers() {
+        WebDriverWait wait = new WebDriverWait(driver, 5000);
         WebElement element = driver.findElement(By.xpath("//span[text()='交卷']"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         element = driver.findElement(By.xpath("//div[text()='确认交卷']"));
@@ -145,7 +142,7 @@ public class ExamTest extends BaseDriver {
         //选择中华人民共和国企业所得税月（季）度预缴纳税申报表（A类）报表
         element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div/div[2]/div[3]/table/tbody/tr[1]/td[5]/div/span"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
-        waitTime(6000);
+        waitTime(5000);
         element = driver.findElement(By.className("my_iframe"));
         driver.switchTo().frame(element);
         waitTime(3000);
@@ -153,39 +150,56 @@ public class ExamTest extends BaseDriver {
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
 
         //K20
-        Actions actions = new Actions(driver);
-        actions.moveByOffset(1003, 517).perform();
-        actions.doubleClick().perform();
-
+        Actions actions = new Actions(driver);   //580 小了
+        actions.moveByOffset(1003, 580).perform();
+        actions.doubleClick().keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
+        actions.sendKeys(Keys.BACK_SPACE).perform();
         actions.sendKeys("6502.21").build().perform();
-        actions.doubleClick().perform();
-        actions.sendKeys(Keys.ENTER);
+        actions.sendKeys(Keys.ENTER).perform();
         waitTime(3000);
-        //k35 季末从业人数
-        actions.moveByOffset(1003, 517).perform();
-        actions.doubleClick().perform();
-        actions.sendKeys("6").build().perform();
-
-        actions.moveByOffset(1003, 520).build().perform();
+        actions.sendKeys(Keys.ENTER).perform();
+        actions.sendKeys(Keys.ENTER).perform();
+        //14
+        for (int i = 0; i < 12; i++) {
+            actions.sendKeys(Keys.ENTER).perform();
+        }
+        //季末从业人数
+        actions.sendKeys("6").perform();
+        actions.sendKeys(Keys.ENTER).perform();
+        //季末资产总额（万元）
+        actions.sendKeys("70.91").perform();
+        actions.sendKeys(Keys.ENTER).build().perform();
+        //季初资产总额（万元）58.4
+        actions.sendKeys(Keys.LEFT).perform();
+        actions.sendKeys(Keys.LEFT).perform();
+        actions.sendKeys(Keys.UP).perform();
+        actions.sendKeys(Keys.UP).perform();
+        actions.sendKeys("58.4").perform();
+        actions.sendKeys(Keys.ENTER).build().perform();
+        //季初从业人数  6
+        actions.sendKeys("6").perform();
+        actions.sendKeys(Keys.ENTER).build().perform();
         waitTime(5000);
-        actions.doubleClick().perform();
-        actions.sendKeys("70.91").build().perform();
-
-
-     /*   //点击保存
-        element = driver.findElement(By.xpath("//span[text()='保存']"));
+        //切出
+        driver.switchTo().defaultContent();
+        waitTime(1000);
+        //切入
+        driver.switchTo().frame(driver.findElement(By.name("ifinc")));
+        waitTime(1000);
+        element = driver.findElement(By.xpath("//span[text()='保存']/.."));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         //点击审核
         element = driver.findElement(By.xpath("//span[text()='审核']"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        element = driver.findElement(By.xpath("//span[text()='确 定']/.."));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         //点击申报
         element = driver.findElement(By.xpath("//span[text()='申报']"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
-
         System.out.println("完成！");
         driver.navigate().refresh();
-        waitTime(2000);*/
-
+        waitTime(2000);
+        removeAlert();
     }
 
 
