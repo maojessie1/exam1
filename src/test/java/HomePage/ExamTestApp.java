@@ -72,6 +72,8 @@ public class ExamTestApp extends BaseDriver {
         //1226考（100分）上册 18题
         enterpriseTaxSeasonApplyForm(formNameMap, "enterpriseTaxSeasonApplyForm");
     }
+    
+    
 
     //等待时间
     public void waitTime(long wait) {
