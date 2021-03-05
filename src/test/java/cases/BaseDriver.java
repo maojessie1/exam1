@@ -8,9 +8,15 @@ public class BaseDriver {
     public WebDriver driver;
 
     public WebDriver setBrowser(String browser) {
+//        if (driver != null){
+//            return driver;
+//        }
         if (browser.equalsIgnoreCase("chrome")) {
+            String path = BaseDriver.class.getResource("/").getPath();
+            System.out.println("path = " + path);
 //            System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe");
             System.setProperty("webdriver.chrome.driver", "C:\\Users\\Lenovo\\AppData\\Local\\Google\\Chrome\\Application\\chromedriver.exe");
+//            System.setProperty("webdriver.chrome.driver", path+"tools\\chromedriver.exe");
             driver = new ChromeDriver();
 
         } else {
