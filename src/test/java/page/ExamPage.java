@@ -15,7 +15,7 @@ public class ExamPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "")
+    @FindBy(css = "div~ul>li>i[class=\"el-icon-search\"]")
     public WebElement a;
 
 

@@ -731,7 +731,7 @@ public class ExamTestApp extends BaseDriver {
         WebDriverWait wait = new WebDriverWait(driver, 3);
         WebElement element;
         //点击发票领购菜单
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div~ul>li>i[class=\"el-icon-search\"]")))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("")))).click();
         System.out.println("step1点击发票领购菜单成功！");
 //        点击发票类型弹出下拉框
         element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/form/div[2]/div/div/div/input"));

@@ -86,5 +86,8 @@ public class ExamHandle {
     //--------------------------------------------------------------------
     //@FindBy...is beginning
 
+    public void a1(){
+        examPage.a.clear();
+    }
 
 }
