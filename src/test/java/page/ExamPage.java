@@ -2,13 +2,26 @@ package page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
 public class ExamPage extends BasePage {
+    WebDriver driver;
+
     public ExamPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
+
+    @FindBy(xpath = "")
+    public WebElement a;
+
+
+
+
+
 
     public WebElement getUsernameElement() {
         return getFindElement("usernameElement");
@@ -72,5 +85,7 @@ public class ExamPage extends BasePage {
     public WebElement getpageSixElement() {
         return getFindElement("pageSix");
     }
+
+
 
 }

@@ -82,4 +82,9 @@ public class ExamHandle {
     public void pageSixElement() {
         examPage.getpageSixElement().click();
     }
+
+    //--------------------------------------------------------------------
+    //@FindBy...is beginning
+
+
 }

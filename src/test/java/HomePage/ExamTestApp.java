@@ -38,8 +38,6 @@ public class ExamTestApp extends BaseDriver {
         //隐式等待，等待5s
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         examHandle = new ExamHandle(driver);
-
-
         convetMap.put("bank", "bankName");
     }
 
@@ -68,12 +66,12 @@ public class ExamTestApp extends BaseDriver {
         //1226考（100分）上册 16题  领购发票、增加商品服务档案和客户信息、三金室内设计公司代开含税增值税纸质普通发票。
 //        customerMsgForm(formNameMap, "customerMsgForm");
         //1226考（100分）上册 17题
-//        airplainTravelForm(formNameMap, "airplainTravelForm");
+        airplainTravelForm(formNameMap, "airplainTravelForm");
         //1226考（100分）上册 18题
         enterpriseTaxSeasonApplyForm(formNameMap, "enterpriseTaxSeasonApplyForm");
+
     }
-    
-    
+
 
     //等待时间
     public void waitTime(long wait) {
