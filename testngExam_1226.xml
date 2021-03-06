@@ -5,7 +5,6 @@
         <parameter name="user" value="210202000019"></parameter>
         <parameter name="password" value="785674"></parameter>
         <classes>
-
             <class name="HomePage.ExamTestApp"></class>
         </classes>
     </test>

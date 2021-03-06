@@ -1,5 +1,6 @@
 package HomePage;
 
+import Util.ReadExcel;
 import cases.BaseDriver;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -11,16 +12,14 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-
-public class Exam_1206 extends BaseDriver {
+public class Exam_1226bk extends BaseDriver {
     public WebDriver driver;
     ExamHandle examHandle;
     HashMap<String, Map> formNameMap1 = null;
@@ -46,10 +45,10 @@ public class Exam_1206 extends BaseDriver {
 
     }
 
-    //运行xml文件
-    @Parameters({"user","password"})
-    @Test
+
+    @Test(dataProvider = "excelData",dataProviderClass = ReadExcel.class,groups = "test",description = "aaa")
     public void login(String user,String password) {
+        System.out.println("user="+user+"  "+password);
         System.out.println("1");
         waitTime(2000);
         examHandle.usernameElement(user);

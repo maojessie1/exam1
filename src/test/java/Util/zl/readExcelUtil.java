@@ -44,7 +44,6 @@ public class readExcelUtil {
     }
 
     public static void main(String[] args) {
-
         Sheet excel = getExcel();
         int rows = excel.getRows();
         int columns = excel.getColumns();
