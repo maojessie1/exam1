@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="E:/exam1/src/test/java/HomePage/ExamTestApp.java">
+        <parameter name="user" value="210202000019"></parameter>
+        <parameter name="password" value="785674"></parameter>
+        <classes>
+            <class name="HomePage.ExamTestApp"></class>
+        </classes>
+    </test>
+</suite>
