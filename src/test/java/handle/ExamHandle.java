@@ -2,12 +2,19 @@ package handle;
 
 import Util.ProUtil;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Parameters;
 import page.ExamPage;
+
+import javax.xml.crypto.Data;
+import java.time.Duration;
 
 public class ExamHandle {
     public WebDriver driver;
     ExamPage examPage;
-
+//    WebDriverWait wait = new WebDriverWait(driver,10);
     ProUtil proUtil = new ProUtil("cardNum.properties");
     String elementKey = proUtil.getP("user4");
     String local = elementKey.split(">")[0];
@@ -17,14 +24,23 @@ public class ExamHandle {
         examPage = new ExamPage(driver);
     }
 
+//    @Parameters({"user"})
+//    public void usernameElement(String user) {
+//        examPage.getUsernameElement().sendKeys(user);
+//    }
+//    @Parameters({"password"})
+//    public void passwordElement(String password) {
+//        examPage.getPasswordElement().sendKeys(password);
+//    }
 
-    public void usernameElement() {
-        examPage.getUsernameElement().sendKeys(local);
+    public void usernameElement(String user) {
+        examPage.getUsernameElement().sendKeys(user);
     }
 
-    public void passwordElement() {
-        examPage.getPasswordElement().sendKeys(value);
+    public void passwordElement(String password) {
+        examPage.getPasswordElement().sendKeys(password);
     }
+
 
     public void loginElement() {
         examPage.getloginElement().click();
@@ -86,8 +102,19 @@ public class ExamHandle {
     //--------------------------------------------------------------------
     //@FindBy...is beginning
 
-    public void a1(){
-        examPage.a.clear();
+
+
+    public void clickMenuReceive(){
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        examPage.receive.click();
+    }
+
+    public void clickBtnBox(){
+        examPage.receive1.click();
     }
 
 }

@@ -1,5 +1,6 @@
 package page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,8 +16,7 @@ public class ExamPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(css = "div~ul>li>i[class=\"el-icon-search\"]")
-    public WebElement a;
+
 
 
 
@@ -87,5 +87,13 @@ public class ExamPage extends BasePage {
     }
 
 
+    //--------------------------------------------------------------------
+    //@FindBy...is beginning
+
+    @FindBy(css = "div~ul>li>i[class=\"el-icon-search\"]")
+    public WebElement receive;
+    //选择发票类型：点击下拉框
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/form/div[2]/div/div/div/input")
+    public WebElement receive1;
 
 }

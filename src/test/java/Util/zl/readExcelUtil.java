@@ -10,13 +10,17 @@ import java.io.File;
 import java.io.IOException;
 
 public class readExcelUtil {
-    public static void getExcel() {
+    public static Sheet getExcel() {
         WritableWorkbook wwb = null;
         //1:创建workbook
         Workbook workbook = null;
 
         try {
-            workbook = Workbook.getWorkbook(new File("D:\\dataList\\data201205103527.xls"));
+//            workbook = Workbook.getWorkbook(new File("C:\\Users\\123\\Desktop\\userList1.xls"));
+            String path = readExcelUtil.class.getResource("/").getPath();
+            System.out.println("考试账号的excel路径地址是："+ path);
+            workbook = Workbook.getWorkbook(new File(path+"files\\userList1.xls"));
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (BiffException e) {
@@ -34,12 +38,18 @@ public class readExcelUtil {
             System.out.print(cell.getContents() + " ");
             System.out.println();
         }
-
+        return sheet;
         //最后一步：关闭资源
-        workbook.close();
+//        workbook.close();
     }
 
     public static void main(String[] args) {
-        getExcel();
+
+        Sheet excel = getExcel();
+        int rows = excel.getRows();
+        int columns = excel.getColumns();
+        System.out.println(rows);
+        System.out.println(columns);
+
     }
 }

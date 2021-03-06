@@ -11,6 +11,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 
@@ -44,12 +46,14 @@ public class Exam_1206 extends BaseDriver {
         convetMap.put("bank", "bankName");
     }
 
+    //运行xml文件
+    @Parameters({"user","password"})
     @Test
-    public void login() {
+    public void login(String user,String password) {
         System.out.println("1");
         waitTime(2000);
-        examHandle.usernameElement();
-        examHandle.passwordElement();
+        examHandle.usernameElement(user);
+        examHandle.passwordElement(password);
         examHandle.loginElement();
         //确认&继续
         examHandle.continueOneElement();
@@ -108,19 +112,13 @@ public class Exam_1206 extends BaseDriver {
 
 
         //点击发票领购菜单
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div~ul>li>i[class=\"el-icon-search\"]")))).click();
+        examHandle.clickMenuReceive();
         System.out.println("step1点击发票领购菜单成功！");
-        //        点击发票类型弹出下拉框
-        element = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/form/div[2]/div/div/div/input"));
-        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        //点击发票类型弹出下拉框
+        examHandle.clickBtnBox();
         System.out.println("step2点击发票类型弹框成功！");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
-        //        move到弹框上
+        //move到弹框上
         WebElement element1 = driver.findElement(By.xpath("/html/body/div[3]/div[1]/div[1]/ul"));
         Actions actions = new Actions(driver);
         actions.moveToElement(element1).perform();

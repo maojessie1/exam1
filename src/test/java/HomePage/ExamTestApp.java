@@ -11,6 +11,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 
@@ -41,16 +42,18 @@ public class ExamTestApp extends BaseDriver {
         convetMap.put("bank", "bankName");
     }
 
+    //运行xml
+    @Parameters({"user","password"})
     @Test
-    public void login() {
+    public void login(String user,String password) {
         System.out.println("1");
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        examHandle.usernameElement();
-        examHandle.passwordElement();
+        examHandle.usernameElement(user);
+        examHandle.passwordElement(password);
         examHandle.loginElement();
         //确认&继续
         examHandle.continueOneElement();
