@@ -45,9 +45,6 @@ public class Exam_1206 extends BaseDriver {
         examHandle = new ExamHandle(driver);
         convetMap.put("bank", "bankName");
 
-
-
-
     }
 
     //运行xml文件
