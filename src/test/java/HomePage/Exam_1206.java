@@ -44,6 +44,10 @@ public class Exam_1206 extends BaseDriver {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         examHandle = new ExamHandle(driver);
         convetMap.put("bank", "bankName");
+
+
+
+
     }
 
     //运行xml文件
