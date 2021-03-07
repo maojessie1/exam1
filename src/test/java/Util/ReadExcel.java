@@ -33,9 +33,6 @@ import java.util.Map;
     public String[][]  init(String path, String moduleName, int startRow, int col) {
         String[][] result = null;
         try {
-//            path = "TestData/" + fileName + ".xls";
-//            path = "C:\\Users\\123\\Desktop\\userList1.xls";
-            System.out.println("path:" + path);
             inputStream = new FileInputStream(path);
             book = Workbook.getWorkbook(inputStream);
             sheet = book.getSheet(moduleName);
@@ -50,7 +47,6 @@ import java.util.Map;
                     result[rowPoint][i] = cell[i].getContents().toString();
 //                    System.out.println(r + "," + i + "=" + result[rowPoint][i]);
                 }
-//                this.currentRowNo++;
             }
 
         } catch (FileNotFoundException e) {
@@ -98,15 +94,14 @@ import java.util.Map;
     public void remove() {
         throw new UnsupportedOperationException("remove unsupported.");
     }
-
     @DataProvider(name = "excelData")
     protected Object[][] excel(Method method) {
-        String fileName = "C:\\Users\\123\\Desktop\\userList1.xls";
+        String path = ReadExcel.class.getResource("/").getPath();
+        String fileName = path+"files\\userList1.xls";
+        System.out.println("111111111111"+path);
         String moduleName = "login";
         return init(fileName, moduleName, 1,2);
     }
-
-
     @Test(dataProvider="excelData")
     public void test11(String name,String age){
         System.out.println("<"+name+","+age+">");

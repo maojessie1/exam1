@@ -1,15 +1,47 @@
 package HomePage;
 
 import Util.ReadExcel;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import javax.annotation.Resource;
-
-
 public class Testss {
-    @Test(dataProvider = "excelData",dataProviderClass = ReadExcel.class,groups = "test",description = "aaa")
-    @Resource
-    public void test11(String name1,String ag1e){
-        System.out.println(name1+"_"+ag1e);
+
+
+    @BeforeClass
+    public void beforeClass() {
+        System.out.println("beforeClass");
+    }
+
+    @Test(dataProvider = "excelData", dataProviderClass = ReadExcel.class, groups = "test", description = "aaa")
+    public void test11(String user, String password) {
+        System.out.println(user + " " + password);
+    }
+
+    @AfterClass
+    public void afterClass() {
+        System.out.println("afterClass");
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//    @Test
+//    public void test(){
+//        System.out.println("test");
+//    }
+//
+//    @Test
+//    public void test1(){
+//        System.out.println("test1");
+//    }
