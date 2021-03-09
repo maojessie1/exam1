@@ -45,6 +45,7 @@ public class Exam_1206 extends BaseDriver {
         convetMap.put("bank", "bankName");
 
     }
+    //1206考zdh初级0305r
 
     //运行xml文件
     @Parameters({"user","password"})
