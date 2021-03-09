@@ -132,8 +132,8 @@ public class HttpUtil {
                 NameValuePair[] data = new NameValuePair[params.size()];
                 int i = 0;
                 Map.Entry entry;
-                for (Iterator i$ = params.entrySet().iterator(); i$
-                        .hasNext(); data[i++] = new NameValuePair((String) entry.getKey(), (String) entry.getValue())) {
+                for (Iterator i$ = params.entrySet().iterator();
+                     i$.hasNext(); data[i++] = new NameValuePair((String) entry.getKey(), (String) entry.getValue())) {
                     entry = (Map.Entry) i$.next();
                 }
                 method.setRequestBody(data);
@@ -152,7 +152,6 @@ public class HttpUtil {
                 BufferedReader reader = new BufferedReader(
                         new InputStreamReader(method.getResponseBodyAsStream(), StandardCharsets.UTF_8));
                 String str = null;
-
                 while ((str = reader.readLine()) != null) {
                     result.append(str);
                 }
