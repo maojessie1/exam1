@@ -1,7 +1,7 @@
 package integration;
 
-import com.google.gson.Gson;
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.testng.annotations.Test;
 
 import java.util.*;
@@ -156,15 +156,9 @@ public class GetScore {
         String json = "{\"examId\": \"104275091001\", \"examPlan\": \"10000587\", \"paperCode\": \"ea04ee51-e3bc-453f-b265-a44e311bb980\"}";
         paramMap.put(nativeJsonTag, json);
         resultMap = SendUtil.sendPostVSToken(url, headers, paramMap, "POST");
-//        System.out.println("resultMap = " + resultMap);
-//        JSONObject data = JSON.parseObject(resultMap.get("data"));
-//        System.out.println("data:"+data);
-        JSONObject jsonObject = new JSONObject();
-        JSONObject jsonObject1 = jsonObject.fromObject(resultMap);//将String转为JSON数据
-        String exerciseStr = jsonObject1.getString("data");//获取key为"_source"的值。
-        System.out.println("exerciseStr = " + exerciseStr);
-
-
+        System.out.println("resultMap = " + resultMap);
+        JSONObject data = JSON.parseObject(resultMap.get("data"));
+        System.out.println("data:"+data);
 
     }
 }
