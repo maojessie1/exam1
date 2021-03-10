@@ -151,6 +151,8 @@ public class GetScore {
         headers.put("sec-ch-ua-mobile", "?0");
         headers.put("Sec-Fetch-Dest", "empty");
         headers.put("Sec-Fetch-Mode", "cors");
+
+
         headers.put("Sec-Fetch-Site", "same-site");
         headers.put("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.72 Safari/537.36");
         String json = "{\"examId\": \"104275091001\", \"examPlan\": \"10000587\", \"paperCode\": \"ea04ee51-e3bc-453f-b265-a44e311bb980\"}";
