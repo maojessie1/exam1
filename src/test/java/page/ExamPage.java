@@ -96,4 +96,6 @@ public class ExamPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/form/div[2]/div/div/div/input")
     public WebElement receive1;
 
+
+
 }

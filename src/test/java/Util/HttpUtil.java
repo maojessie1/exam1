@@ -188,9 +188,6 @@ public class HttpUtil {
             this.params = params;
         }
 
-
-
-
         @Override
         public void run() {
             doPost(url, params);

@@ -26,7 +26,7 @@ public class Exam_1226bk extends BaseDriver {
 
     WebElement element;
     List<WebElement> elements1;
-    JavascriptExecutor js = null;
+    JavascriptExecutor jscript = null;
 
     @BeforeMethod
     public void init() {
@@ -35,6 +35,7 @@ public class Exam_1226bk extends BaseDriver {
 //        driver.get("https://zledukstest.cailian.net/#/login");
         driver.get("https://zleduks.cailian.net/#/login");
         driver.manage().window().maximize();
+
         //隐式等待，等待5s
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         examHandle = new ExamHandle(driver);
@@ -105,54 +106,56 @@ public class Exam_1226bk extends BaseDriver {
         examHandle.clickMenuReceive();
         System.out.println("step1点击发票领购菜单成功！");
         //点击发票类型弹出下拉框
-//        examHandle.clickBtnBox();
-//        System.out.println("step2点击发票类型弹框成功！");
-//
-//        //move到弹框上
-//        WebElement element1 = driver.findElement(By.xpath("/html/body/div[3]/div[1]/div[1]/ul"));
-//        Actions actions = new Actions(driver);
-//        actions.moveToElement(element1).perform();
-//        System.out.println("step3move成功！");
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-////        点击普通发票
-//        WebElement element2 = driver.findElement(By.xpath("/html/body/div[3]/div[1]/div[1]/ul/li[2]/span"));
-//        wait.until(ExpectedConditions.elementToBeClickable(element2)).click();
-//        System.out.println("step4选择普通发票类型成功！");
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//
-//        //点击领购按钮
-//        List<WebElement> linggou2 = driver.findElements(By.cssSelector("[class=\"el-form-item__content\"] button"));
-//        wait.until(ExpectedConditions.elementToBeClickable(linggou2.get(0))).click();
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-////        输入88888888
-//        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("span input[class=\"el-input__inner\"]")))).sendKeys("88888888");
-//        List<WebElement> click2 = driver.findElements(By.cssSelector(".el-button.el-button--primary.el-button--small"));
-//        wait.until(ExpectedConditions.elementToBeClickable(click2.get(1))).click();
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//
-//
-////        输入领购日期
-//        List<WebElement> data4 = driver.findElements(By.cssSelector(".el-form-item__content .el-input__inner"));
-//        wait.until(ExpectedConditions.elementToBeClickable(data4.get(3))).sendKeys("2019-12-16");
-////        输入领购数量
-//        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div>div[class=\"el-input el-input--small\"]>input")))).sendKeys("25");
-//        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div>div[class=\"el-input el-input--small\"]>input")))).click();
+        examHandle.clickBtnBox();
+        System.out.println("step2点击发票类型弹框成功！");
+
+        //move到弹框上
+        WebElement element1 = driver.findElement(By.xpath("/html/body/div[3]/div[1]/div[1]/ul"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element1).perform();
+        System.out.println("step3move成功！");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+//        点击普通发票
+        WebElement element2 = driver.findElement(By.xpath("/html/body/div[3]/div[1]/div[1]/ul/li[2]/span"));
+        wait.until(ExpectedConditions.elementToBeClickable(element2)).click();
+        System.out.println("step4选择普通发票类型成功！");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //点击领购按钮
+        List<WebElement> linggou2 = driver.findElements(By.cssSelector("[class=\"el-form-item__content\"] button"));
+        wait.until(ExpectedConditions.elementToBeClickable(linggou2.get(0))).click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+//        输入88888888
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("span input[class=\"el-input__inner\"]")))).sendKeys("88888888");
+        jscript = (JavascriptExecutor) driver;
+        jscript.executeScript("return document.getElementsByClassName('el-button el-button--primary el-button--small')[1].click();");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+//        输入领购日期
+        List<WebElement> data4 = driver.findElements(By.cssSelector(".el-form-item__content .el-input__inner"));
+        wait.until(ExpectedConditions.elementToBeClickable(data4.get(3))).sendKeys("2019-12-16");
+//        输入领购数量
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div>div[class=\"el-input el-input--small\"]>input")))).sendKeys("25");
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div>div[class=\"el-input el-input--small\"]>input")))).click();
+
+
 
 ////        点击确定按钮
 //        List<WebElement> click4 = driver.findElements(By.cssSelector(".el-dialog__footer .el-button--small"));
@@ -165,12 +168,13 @@ public class Exam_1226bk extends BaseDriver {
 //        }
 
 
+        waitTime(10000000);
     }
 
-    @AfterClass
-    public void end() {
-        driver.close();
-    }
+//    @AfterClass
+//    public void end() {
+//        driver.close();
+//    }
 
     /**
      * 交卷
