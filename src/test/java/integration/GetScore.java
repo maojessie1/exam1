@@ -1,7 +1,15 @@
 package integration;
 
+import Util.HttpUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONPatch;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import jdk.nashorn.internal.parser.JSONParser;
+import org.apache.commons.httpclient.Header;
 import org.testng.annotations.Test;
 
 import java.util.*;
@@ -64,7 +72,7 @@ public class GetScore {
 
 
     @Test
-    public void exam1() {
+    public void exam() {
         String url = "https://zledusxapi.cailian.net/api-resource/resources/soreView/exam";
         headers.put("Content-Length", "25");
         headers.put("Content-Type", "application/json;charset=UTF-8");
@@ -75,20 +83,81 @@ public class GetScore {
         System.out.println(resultMap.get("data"));
     }
 
-    @Test
-    public void scanQuestionScoreList() {
+    //传参：examId  examPlan  paperCode
+    public void scanQuestionScoreList(String examId,String examPlan,String papercode) {
         String url = "https://zledusxapi.cailian.net/api-score/noAuth/scan-question-score-list";
         headers.put("Content-Length", "98");
         headers.put("Content-Type", "application/json;charset=UTF-8");
-        String json = "{\"examId\": \"104275091001\", \"examPlan\": \"10000587\", \"paperCode\": \"ea04ee51-e3bc-453f-b265-a44e311bb980\"}";
+//        String json = "{\"examId\": \"+"+examId+"+\", \"examPlan\": \"+"+examPlan+"+\", \"paperCode\": \"ea04ee51-e3bc-453f-b265-a44e311bb980\"}";
+        String json = "{\"examId\": \"+"+examId+"+\", \"examPlan\": \"+"+examPlan+"+\", \"paperCode\": \"+"+papercode+"+\"}";
+
         paramMap.put(nativeJsonTag, json);
         resultMap = SendUtil.sendPostVSToken(url, headers, paramMap, "POST");
         System.out.println("resultMap = " + resultMap);
-        JSONObject data = JSON.parseObject(resultMap.get("data"));
-        System.out.println("data:" + data);
+
+        JsonParser jp = new JsonParser();
+        JsonArray datas = jp.parse(resultMap.get("data")).getAsJsonObject().getAsJsonArray("data");
+        int size = datas.size();
+        Double allScore = 0d;
+        Double allRoundScore = 0d;
+        for (int i = 0; i < size; i++) {
+            JsonObject jo = (JsonObject) datas.get(i);
+            allScore += new Double(jo.get("questionScore").toString());
+            allRoundScore += new Double(jo.get("questionRoundScore").toString());
+            System.out.println(i + "--" + jo.get("questionScore") + "," + jo.get("questionRoundScore"));
+        }
+        System.out.println("allScore : " + allScore);
+        System.out.println("allRoundScore : " + allRoundScore);
+
     }
 
-
+//
+//    @Test
+//    public void exam1() throws Exception {
+//        String url = "https://zledusxapi.cailian.net/api-resource/resources/soreView/exam";
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("cardNo", "210305000008");
+//        List<Header> headers = new ArrayList<>();
+//        Header header = new Header();
+//        header.setName("Authorization");
+//        header.setValue("bearer bbeb5f52-ab62-44db-a903-5b1f38a557a2");
+//        headers.add(header);
+//        String result = HttpUtil.doPostWithHeader(url, headers, map, false);
+//        System.out.println(result);
+//
+//        JsonParser js = new JsonParser();
+//        JsonObject data = js.parse(result).getAsJsonObject().getAsJsonObject("data");
+//        String planName = data.get("planName").toString();
+//        System.out.println(planName);
+//
+//
+//    }
+//
+//    @Test
+//    public void scanQuestionScoreList1() throws Exception {
+//        String resultMap = new String();
+//        String url = "https://zledusxapi.cailian.net/api-score/noAuth/scan-question-score-list";
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("examId", "104275091001");
+//        map.put("examPlan", "10000587");
+//        map.put("paperCode", "ea04ee51-e3bc-453f-b265-a44e311bb980");
+//        List<Header> headers = new ArrayList<>();
+//        Header header = new Header();
+//        header.setName("Authorization");
+//        header.setValue("bearer bbeb5f52-ab62-44db-a903-5b1f38a557a2");
+//        headers.add(header);
+//        resultMap = HttpUtil.doPostWithHeader(url, headers, map, false);
+//        System.out.println("resultMap = " + resultMap);
+//        String questionScore = null;
+//        JsonParser jp = new JsonParser();
+//        JsonArray data = jp.parse(resultMap).getAsJsonObject().getAsJsonArray("data");
+//        for (int i = 0; i < data.size(); i++) {
+//            JsonObject jsonObject = (JsonObject) data.get(i);
+//            questionScore = jsonObject.get("questionScore").toString();
+//            System.out.println(questionScore);
+//
+//        }
+//    }
 
 }
 
@@ -111,35 +180,3 @@ public class GetScore {
 
 
 
-
-//
-//    @Test
-//    public void exam() throws Exception {
-//        String url = "https://zledusxapi.cailian.net/api-resource/resources/soreView/exam";
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("cardNo", "210305000008");
-//        List<Header> headers = new ArrayList<>();
-//        Header header = new Header();
-//        header.setName("Authorization");
-//        header.setValue("bearer 1a095cf3-c9f4-4c6b-9e6d-6ef7e4cbbae3");
-//        headers.add(header);
-//        String result = HttpUtil.doPostWithHeader(url, headers, map, false);
-//        System.out.println(result);
-//    }
-//
-//    @Test
-//    public void scanQuestionScoreList() throws Exception {
-//        String resultMap = new String();
-//        String url = "https://zledusxapi.cailian.net/api-score/noAuth/scan-question-score-list";
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("examId", "104275091001");
-//        map.put("examPlan", "10000587");
-//        map.put("paperCode", "ea04ee51-e3bc-453f-b265-a44e311bb980");
-//        List<Header> headers = new ArrayList<>();
-//        Header header = new Header();
-//        header.setName("Authorization");
-//        header.setValue("bearer 1a095cf3-c9f4-4c6b-9e6d-6ef7e4cbbae3");
-//        headers.add(header);
-//        resultMap = HttpUtil.doPostWithHeader(url, headers, map, false);
-//        System.out.println("resultMap = " + resultMap);
-//    }

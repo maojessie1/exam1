@@ -156,7 +156,6 @@ public class Exam_1226bk extends BaseDriver {
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div>div[class=\"el-input el-input--small\"]>input")))).click();
 
 
-
 ////        点击确定按钮
 //        List<WebElement> click4 = driver.findElements(By.cssSelector(".el-dialog__footer .el-button--small"));
 //        wait.until(ExpectedConditions.elementToBeClickable(click4.get(3))).click();

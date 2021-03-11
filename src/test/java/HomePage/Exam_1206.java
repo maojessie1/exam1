@@ -6,6 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import handle.ExamHandle;
+import integration.GetScore;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -107,69 +108,72 @@ public class Exam_1206 extends BaseDriver {
         WebElement iframeName = driver.findElement(By.name("ifinc"));
         driver.switchTo().frame(iframeName);
         waitTime(3000);
+        driver.switchTo().defaultContent();
+        papers();
+//        //点击发票领购菜单
+//        examHandle.clickMenuReceive();
+//        System.out.println("step1点击发票领购菜单成功！");
+//        //点击发票类型弹出下拉框
+//        examHandle.clickBtnBox();
+//        System.out.println("step2点击发票类型弹框成功！");
+//
+//        //move到弹框上
+//        WebElement element1 = driver.findElement(By.xpath("/html/body/div[3]/div[1]/div[1]/ul"));
+//        Actions actions = new Actions(driver);
+//        actions.moveToElement(element1).perform();
+//        System.out.println("step3move成功！");
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+////        点击普通发票
+//        WebElement element2 = driver.findElement(By.xpath("/html/body/div[3]/div[1]/div[1]/ul/li[2]/span"));
+//        wait.until(ExpectedConditions.elementToBeClickable(element2)).click();
+//        System.out.println("step4选择普通发票类型成功！");
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//
+//        //点击领购按钮
+//        List<WebElement> linggou2 = driver.findElements(By.cssSelector("[class=\"el-form-item__content\"] button"));
+//        wait.until(ExpectedConditions.elementToBeClickable(linggou2.get(0))).click();
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+////        输入88888888
+//        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("span input[class=\"el-input__inner\"]")))).sendKeys("88888888");
+//        List<WebElement> click2 = driver.findElements(By.cssSelector(".el-button.el-button--primary.el-button--small"));
+//        wait.until(ExpectedConditions.elementToBeClickable(click2.get(1))).click();
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+////        输入领购日期
+//        List<WebElement> data4 = driver.findElements(By.cssSelector(".el-form-item__content .el-input__inner"));
+//        wait.until(ExpectedConditions.elementToBeClickable(data4.get(3))).sendKeys("2019-12-16");
+////        输入领购数量
+//        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div>div[class=\"el-input el-input--small\"]>input")))).sendKeys("25");
+//        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div>div[class=\"el-input el-input--small\"]>input")))).click();
+//
+////        点击确定按钮
+//        List<WebElement> click4 = driver.findElements(By.cssSelector(".el-dialog__footer .el-button--small"));
+//        wait.until(ExpectedConditions.elementToBeClickable(click4.get(3))).click();
+//        System.out.println("step5领购普通发票25张成功！");
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//
 
-        //点击发票领购菜单
-        examHandle.clickMenuReceive();
-        System.out.println("step1点击发票领购菜单成功！");
-        //点击发票类型弹出下拉框
-        examHandle.clickBtnBox();
-        System.out.println("step2点击发票类型弹框成功！");
-
-        //move到弹框上
-        WebElement element1 = driver.findElement(By.xpath("/html/body/div[3]/div[1]/div[1]/ul"));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(element1).perform();
-        System.out.println("step3move成功！");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-//        点击普通发票
-        WebElement element2 = driver.findElement(By.xpath("/html/body/div[3]/div[1]/div[1]/ul/li[2]/span"));
-        wait.until(ExpectedConditions.elementToBeClickable(element2)).click();
-        System.out.println("step4选择普通发票类型成功！");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        //点击领购按钮
-        List<WebElement> linggou2 = driver.findElements(By.cssSelector("[class=\"el-form-item__content\"] button"));
-        wait.until(ExpectedConditions.elementToBeClickable(linggou2.get(0))).click();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-//        输入88888888
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("span input[class=\"el-input__inner\"]")))).sendKeys("88888888");
-        List<WebElement> click2 = driver.findElements(By.cssSelector(".el-button.el-button--primary.el-button--small"));
-        wait.until(ExpectedConditions.elementToBeClickable(click2.get(1))).click();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-
-//        输入领购日期
-        List<WebElement> data4 = driver.findElements(By.cssSelector(".el-form-item__content .el-input__inner"));
-        wait.until(ExpectedConditions.elementToBeClickable(data4.get(3))).sendKeys("2019-12-16");
-//        输入领购数量
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div>div[class=\"el-input el-input--small\"]>input")))).sendKeys("25");
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div>div[class=\"el-input el-input--small\"]>input")))).click();
-
-//        点击确定按钮
-        List<WebElement> click4 = driver.findElements(By.cssSelector(".el-dialog__footer .el-button--small"));
-        wait.until(ExpectedConditions.elementToBeClickable(click4.get(3))).click();
-        System.out.println("step5领购普通发票25张成功！");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
 
 
@@ -187,13 +191,14 @@ public class Exam_1206 extends BaseDriver {
         element = driver.findElement(By.xpath("//div[text()='确认交卷']"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
 
-
+        GetScore gs  = new GetScore();
+        gs.scanQuestionScoreList("104275091001","10000587","ea04ee51-e3bc-453f-b265-a44e311bb980");
     }
     //去除考试过程中作弊弹框
     private void removeAlert() {
         Actions actions = new Actions(driver);
         actions.sendKeys(Keys.F12).perform();
-        waitTime(1000);
+        waitTime(2000);
         String js = "document.getElementById('dialog').remove();";
         ((JavascriptExecutor) driver).executeScript(js);
 
