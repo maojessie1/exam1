@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="E:/exam1/src/test/java/HomePage/Exam_1206.java">
-        <parameter  name="user" value="210305000005"></parameter>
+        <parameter  name="user" value="210305000011"></parameter>
         <parameter name="password" value="474374"></parameter>
         <classes>
             <class name="HomePage.Exam_1206"></class>

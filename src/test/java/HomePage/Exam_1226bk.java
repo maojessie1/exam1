@@ -187,6 +187,8 @@ public class Exam_1226bk extends BaseDriver {
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         element = driver.findElement(By.xpath("//div[text()='确认交卷']"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+
+
     }
 
     //去除考试过程中作弊弹框
