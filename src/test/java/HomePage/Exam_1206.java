@@ -161,15 +161,16 @@ public class Exam_1206 extends BaseDriver {
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div>div[class=\"el-input el-input--small\"]>input")))).sendKeys("25");
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("div>div[class=\"el-input el-input--small\"]>input")))).click();
 
-////        点击确定按钮
-//        List<WebElement> click4 = driver.findElements(By.cssSelector(".el-dialog__footer .el-button--small"));
-//        wait.until(ExpectedConditions.elementToBeClickable(click4.get(3))).click();
-//        System.out.println("step5领购普通发票25张成功！");
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+//        点击确定按钮
+        List<WebElement> click4 = driver.findElements(By.cssSelector(".el-dialog__footer .el-button--small"));
+        wait.until(ExpectedConditions.elementToBeClickable(click4.get(3))).click();
+        System.out.println("step5领购普通发票25张成功！");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
 
 
     }
@@ -185,8 +186,9 @@ public class Exam_1206 extends BaseDriver {
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         element = driver.findElement(By.xpath("//div[text()='确认交卷']"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
-    }
 
+
+    }
     //去除考试过程中作弊弹框
     private void removeAlert() {
         Actions actions = new Actions(driver);
